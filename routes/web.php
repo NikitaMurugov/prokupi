@@ -1,8 +1,7 @@
 <?php
 
-Route::get('/cabinet', function () {
-    return view('cabinet');
-});
+
+use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
