@@ -1,0 +1,89 @@
+
+.window-title {
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+.menu {
+  padding: 10px 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.logo {
+    color: #272727;
+}
+.menu-right  {
+  font-size: 16px;
+}
+
+.menu-right btn-dark {
+  color: #fff;
+}
+.menu-right a {
+  margin-left: 40px;
+  transition: 200ms;
+  font-weight: bold;
+}
+
+
+.menu-right a:hover {
+  color: #a7a7a7;
+}
+
+.logo {
+  box-sizing: content-box;
+  width: auto;
+  height: auto;
+  padding: 10px 25px;
+  border: 1px #272727 solid;
+  font-family: 'Rubik Mono One';
+  font-size: 22px;
+  border-radius: 10px;
+}
+
+.logo-city {
+  color: #CD75F6;
+  font-size: 9px;
+}
+
+
+.window__sections {
+  width: 1420px;
+}
+
+.section {
+  width: 350px;
+  height: 250px;
+  /* background: rgba(0, 0, 0, 0.2); */
+  display: flex;
+  flex-wrap: 3;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: 250ms;
+}
+
+.section:hover {
+  transform: scale(1.15);
+}
+
+.section-image {
+  background: #CD75F6;
+  border-radius: 20px;
+  width: 300px;
+  height: 150px;
+}
+.section-title {
+  width: 300px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
