@@ -53,21 +53,22 @@
 
 
 .window__sections {
-  width: 1420px;
+    width: 1420px;
 }
 
 .section {
-  width: 350px;
-  height: 250px;
-  /* background: rgba(0, 0, 0, 0.2); */
-  display: flex;
-  flex-wrap: 3;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  cursor: pointer;
-  transition: 250ms;
+    width: 350px;
+    height: 250px;
+    /* background: rgba(0, 0, 0, 0.2); */
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: space-between;
+
+    align-items: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: 250ms;
 }
 
 .section:hover {
