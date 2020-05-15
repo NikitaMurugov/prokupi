@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class ProductRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return false;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            'name' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+            'phone_number' => 'required|max:12',
+            'location' => 'required'
+        ];
+    }
+
+    public function messages(){
+       return [
+           'name.required' => 'Поле имя является обязательным',
+           'price.required' => 'Поле цена является обязательным',
+           'description.required' => 'Поле описание товара является обязательным',
+           'phone_number.required' => 'Поле номер телефона является обязательным',
+           'phone_number.max:12' => 'Поле номер телефона должен содержать 12 символов (+79000000000)',
+           'location.required' => 'Поле местоположение является обязательным'
+       ];
+    }
+}
