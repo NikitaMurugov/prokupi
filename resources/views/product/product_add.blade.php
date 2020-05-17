@@ -96,9 +96,9 @@
                         <label for="phone_number" class="col-md-4 col-form-label text-md-right">{{ __('Контактный телефон') }}</label>
 
                         <div class="col-md-6">
-                            <input id="phone_number" type="number" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" maxlength="12">
+                            <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" maxlength="12">
                             <small class="form-text text-muted">Будет видно всем пользователям.</small>
-                            @error('name')
+                            @error('phone_number')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

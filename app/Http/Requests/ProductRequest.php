@@ -27,7 +27,7 @@ class ProductRequest extends FormRequest
             'name' => 'required',
             'price' => 'required',
             'description' => 'required',
-            'phone_number' => 'required|max:12',
+            'phone_number' => 'required|min:12|max:12',
             'location' => 'required'
         ];
     }
@@ -38,7 +38,8 @@ class ProductRequest extends FormRequest
            'price.required' => 'Поле цена является обязательным',
            'description.required' => 'Поле описание товара является обязательным',
            'phone_number.required' => 'Поле номер телефона является обязательным',
-           'phone_number.max:12' => 'Поле номер телефона должен содержать 12 символов (+79000000000)',
+           'phone_number.max' => 'Поле номер телефона должен содержать 12 символов (+79000000000)',
+           'phone_number.min' => 'Поле номер телефона должен содержать 12 символов (+79000000000)',
            'location.required' => 'Поле местоположение является обязательным'
        ];
     }
