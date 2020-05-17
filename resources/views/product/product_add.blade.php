@@ -10,7 +10,7 @@
             <div class="card-header">{{ __('Подать объявление') }}</div>
 
             <div class="card-body">
-                <form method="POST" action="{{ route('product_submit') }}">
+                <form method="POST" action="{{ route('product_submit') }}" enctype="multipart/form-data">
                     @csrf
 
                     <div class="form-group row">
@@ -69,7 +69,8 @@
 
                         <div class="col-md-6">
                             <input id="img" type="file" class="form-control-file @error('img') is-invalid @enderror" name="img">
-                            <small class="form-text text-muted">Пока што не работает.</small>
+                            <small class="form-text text-muted">Это изображение должно быть привлекательным и приятным для пользователей.</small>
+
                             @error('img')
                             <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -96,9 +97,9 @@
                         <label for="phone_number" class="col-md-4 col-form-label text-md-right">{{ __('Контактный телефон') }}</label>
 
                         <div class="col-md-6">
-                            <input id="phone_number" type="number" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" maxlength="12">
+                            <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" maxlength="12">
                             <small class="form-text text-muted">Будет видно всем пользователям.</small>
-                            @error('name')
+                            @error('phone_number')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

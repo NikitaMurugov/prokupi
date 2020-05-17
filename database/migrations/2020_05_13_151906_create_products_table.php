@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->text("description");
             $table->string("phone_number",12);
             $table->string("location",350);
+            $table->text("img");
             $table->timestamps();
         });
     }

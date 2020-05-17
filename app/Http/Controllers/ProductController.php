@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Categories;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProductRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -26,6 +27,8 @@ class ProductController extends Controller
 
     public function submit(ProductRequest $req) {
 
+        $image = $req->file('img')->storePublicly('uploads/user/' . Auth::id(), 'public');
+
         $product = new Product();
 
         $product->name = $req->input('name');
@@ -34,6 +37,7 @@ class ProductController extends Controller
         $product->price = $req->input('price');
         $product->description = $req->input('description');
         $product->phone_number = $req->input('phone_number');
+        $product->img = $image;
         $product->location = $req->input('location');
 
         $product->save();
