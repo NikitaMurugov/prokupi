@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Categories;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
@@ -23,7 +24,7 @@ class ProductController extends Controller
         return view('product.product');
     }
 
-    public function submit(Request $req) {
+    public function submit(ProductRequest $req) {
 
         $product = new Product();
 
