@@ -1,0 +1,55 @@
+$white: #ffffff
+$grey: #e0e0e0
+
+$shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 8px 0 rgba(0, 0, 0, 0.12)
+$cubic: cubic-bezier(.64,.09,.08,1)
+
+//.email
+//    width: 260px
+//    margin-left: 20%
+//    display: block
+//    font-size: 16px
+//    padding: 10px 0
+//    border: none
+//    border-bottom: solid 1px darken($grey, 40%)
+//    color: darken($grey, 40%)
+//    background-image: linear-gradient(to bottom, rgba(0,0,0,0) 98%, darken($grey, 35%) 98%)
+//    background-repeat: no-repeat
+//    background-size: 260px 100%
+//    background-position: -260px 0
+//    transition: background-position 0.2s $cubic
+//    &:focus, &:valid
+//        background-position: 0 0
+//        outline: none
+
+
+
+.autosuffix
+    margin-left: 20%
+    margin-top: 10px
+    box-shadow: $shadow
+    display: inline-block
+    border-radius: 3px
+    position: absolute
+    z-index: 1000
+    li
+        padding: 14px
+        padding-right: 20px
+        cursor: pointer
+        background: $white
+        &:first-of-type
+            border-radius: 3px 3px 0 0
+
+        &:last-of-type
+            border-radius: 0 0 3px 3px
+
+        &:hover
+            background: $grey
+
+
+
+
+
+
+
+

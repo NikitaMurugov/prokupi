@@ -31,10 +31,10 @@
                         <label for="category_id" class="col-md-4 col-form-label text-md-right">{{ __('Категория товара') }}</label>
 
                         <div class="col-md-6">
-                            <select id="category_id" class="form-control @error('category_id') is-invalid @enderror" name="category_id">
-                                <option value="1">Бытовая электроника</option>
+                            <select id="category_id" class="form-control @error('category_id') is-invalid @enderror bfh-selectbox"  data-filter="true" name="category_id">
+                                <option value="1" selected>Бытовая электроника</option>
                                 <option value="2">Для квартиры и дома</option>
-                                <option selected value="3">Хобби и отдых</option>
+                                <option value="3">Хобби и отдых</option>
                                 <option value="4">Транспорт</option>
                                 <option value="5">Недвижимость</option>
                                 <option value="6">Личные вещи</option>
@@ -97,7 +97,7 @@
                         <label for="phone_number" class="col-md-4 col-form-label text-md-right">{{ __('Контактный телефон') }}</label>
 
                         <div class="col-md-6">
-                            <input id="phone_number" type="text" value="+7" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" maxlength="12">
+                            <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror bfh-phone" data-format="+7 (ddd) ddd-dddd" name="phone_number" value="{{ old('phone_number') }}">
                             <small class="form-text text-muted">Будет видно всем пользователям.</small>
                             @error('phone_number')
                                 <span class="invalid-feedback" role="alert">

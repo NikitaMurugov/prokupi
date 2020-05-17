@@ -31,8 +31,8 @@
                                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email">
-
+                                    <input id="email" type="email" class="email form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email">
+                                    <ul class="autosuffix"></ul>
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -45,7 +45,7 @@
                                 <label for="phone_number" class="col-md-4 col-form-label text-md-right">{{ __('Номер телефона') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="phone_number" type="phone" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" autocomplete="phone_number">
+                                    <input id="phone_number"  type="text" class="form-control @error('phone_number') is-invalid @enderror bfh-phone" data-format="+7 (ddd) ddd-dddd" name="phone_number">
 
                                     @error('phone_number')
                                     <span class="invalid-feedback" role="alert">
@@ -90,4 +90,13 @@
             </div>
         </div>
     </div>
+
 @endsection
+
+@push('styles')
+    <link href="{{ asset('css/email-input.css') }}" rel="stylesheet">
+@endpush
+
+@push('scripts')
+    <script src="{{ asset('js/email-input.js') }}"></script>
+@endpush

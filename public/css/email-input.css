@@ -1,0 +1,29 @@
+.autosuffix {
+  margin-left: 20%;
+  margin-top: 10px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 8px 0 rgba(0, 0, 0, 0.12);
+  display: inline-block;
+  border-radius: 3px;
+  position: absolute;
+  z-index: 1000;
+}
+
+.autosuffix li {
+  padding: 14px;
+  padding-right: 20px;
+  cursor: pointer;
+  background: #ffffff;
+}
+
+.autosuffix li:first-of-type {
+  border-radius: 3px 3px 0 0;
+}
+
+.autosuffix li:last-of-type {
+  border-radius: 0 0 3px 3px;
+}
+
+.autosuffix li:hover {
+  background: #e0e0e0;
+}
+
