@@ -17,7 +17,7 @@
                         <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Название товара') }}</label>
 
                         <div class="col-md-6">
-                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autofocus>
+                            <input id="name" type="text" placeholder="Например: Кровать" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autofocus>
 
                             @error('name')
                             <span class="invalid-feedback" role="alert">
@@ -54,7 +54,7 @@
                         <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Описание товара') }}</label>
 
                         <div class="col-md-6">
-                            <textarea id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description"></textarea>
+                            <textarea id="description" type="text" placeholder="Например: Очень удобная" class="form-control @error('description') is-invalid @enderror" name="description"></textarea>
 
                             @error('description')
                             <span class="invalid-feedback" role="alert">
@@ -83,7 +83,7 @@
                         <label for="location" class="col-md-4 col-form-label text-md-right">{{ __('Местоположение') }}</label>
 
                         <div class="col-md-6">
-                            <input id="location" type="text" class="form-control @error('location') is-invalid @enderror" name="location" value="{{ old('location') }}" autofocus>
+                            <input id="location" type="text" placeholder="Например: Восточный" class="form-control @error('location') is-invalid @enderror" name="location" value="{{ old('location') }}" autofocus>
                             <small class="form-text text-muted">Местоположение по которому будут приходить покупатели за вашим товаром.</small>
                             @error('location')
                                 <span class="invalid-feedback" role="alert">
@@ -97,7 +97,7 @@
                         <label for="phone_number" class="col-md-4 col-form-label text-md-right">{{ __('Контактный телефон') }}</label>
 
                         <div class="col-md-6">
-                            <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" maxlength="12">
+                            <input id="phone_number" type="text" value="+7" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" maxlength="12">
                             <small class="form-text text-muted">Будет видно всем пользователям.</small>
                             @error('phone_number')
                                 <span class="invalid-feedback" role="alert">
@@ -111,7 +111,7 @@
                         <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Цена') }}</label>
 
                         <div class="col-md-6">
-                            <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" autofocus>
+                            <input id="price" type="number" placeholder="Например: 12000" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" autofocus>
 
                             @error('price')
                             <span class="invalid-feedback" role="alert">
