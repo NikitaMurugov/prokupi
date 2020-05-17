@@ -32,14 +32,9 @@
 
                         <div class="col-md-6">
                             <select id="category_id" class="form-control @error('category_id') is-invalid @enderror bfh-selectbox"  data-filter="true" name="category_id">
-                                <option value="1" selected>Бытовая электроника</option>
-                                <option value="2">Для квартиры и дома</option>
-                                <option value="3">Хобби и отдых</option>
-                                <option value="4">Транспорт</option>
-                                <option value="5">Недвижимость</option>
-                                <option value="6">Личные вещи</option>
-                                <option value="7">Животные</option>
-                                <option value="8">Услуги</option>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}" selected>{{$category->name}}</option>
+                                @endforeach
                             </select>
 
                             @error('category_id')
@@ -111,7 +106,7 @@
                         <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Цена') }}</label>
 
                         <div class="col-md-6">
-                            <input id="price" type="number" placeholder="Например: 12000" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" autofocus>
+                            <input id="price" type="text" placeholder="Например: 12000" class="form-control @error('price') is-invalid @enderror" data-format="*d руб." name="price" value="{{ old('price') }}" autofocus>
 
                             @error('price')
                             <span class="invalid-feedback" role="alert">

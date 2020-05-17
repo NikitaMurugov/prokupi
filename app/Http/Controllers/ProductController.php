@@ -18,7 +18,7 @@ class ProductController extends Controller
     }
     public function add()
     {
-        return view('product.product_add');
+        return view('product.product_add', ['categories' => Categories::all()]);
     }
     public function get($id)
     {

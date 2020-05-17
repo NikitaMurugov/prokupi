@@ -1,9 +1,8 @@
 {
     "/js/app.js": "/js/app.js",
+    "/css/email-input.css": "/css/email-input.css",
     "/js/bootstrap-formhelpers.min.js": "/js/bootstrap-formhelpers.min.js",
     "/js/email-input.js": "/js/email-input.js",
-    "/js/jquery-3.5.1.min.js": "/js/jquery-3.5.1.min.js",
-    "/css/email-input.css": "/css/email-input.css",
     "/css/all.css": "/css/all.css",
     "/css/media.css": "/css/media.css",
     "/css/bootstrap-formhelpers.min.css": "/css/bootstrap-formhelpers.min.css"

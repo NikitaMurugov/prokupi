@@ -17,6 +17,9 @@
 .logo {
     color: #272727;
 }
+.logo a {
+    text-decoration: none;
+}
 .menu-right  {
   font-size: 16px;
 }

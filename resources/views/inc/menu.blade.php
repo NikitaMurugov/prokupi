@@ -14,7 +14,7 @@
       <a class='btn btn-dark' href="{{ route('product_add') }}">Подать объявление</a>
     @endguest
 
-    <a class='text-dark' href="/">Главная</a>
+    <a class='text-dark' href="{{ route('home') }}">Главная</a>
     @guest
           <a class='text-dark' href="{{ route('login') }}">{{ __('Логин') }}</a>
         @if (Route::has('register'))

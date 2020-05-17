@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->integer("user_id");
             $table->integer("price");
             $table->text("description");
-            $table->string("phone_number",12);
+            $table->string("phone_number",17);
             $table->string("location",350);
             $table->text("img");
             $table->timestamps();
