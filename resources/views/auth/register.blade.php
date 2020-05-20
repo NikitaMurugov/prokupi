@@ -94,9 +94,9 @@
 @endsection
 
 @push('styles')
-    <link href="{{ asset('css/email-input.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/email-input.css') }}" rel="stylesheet">
 @endpush
 
 @push('scripts')
-    <script src="{{ asset('js/email-input.js') }}"></script>
+    <script src="{{ mix('js/email-input.js') }}"></script>
 @endpush

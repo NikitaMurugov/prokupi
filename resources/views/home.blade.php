@@ -35,15 +35,15 @@
     <h1 class="window-title">Последние добавленные товары:</h1>
     <div class="d-flex flex-wrap p-2 justify-content-between">
         @foreach($products as $product)
-            <div class="card  m-3" style="width: 18rem;">
-                <div  style="background: url('{{ asset('/storage/' . $product->img) }}'); width: 100%;height: 200px; background-size: cover; background-position: center; border-radius: 2px"></div>
+            <div class="card  m-3 col-2" style="width: 18rem;">
+                <div  style="background: url('{{ asset('/storage/' . $product->image) }}'); width: 100%;height: 200px; background-size: cover; background-position: center; border-radius: 2px"></div>
                 <div class="card-body">
                     <h5 class="card-title ">{{ $product->name }}</h5>
                     <h5 class="card-subtitle text-primary">{{ $product->price }} руб.</h5>
                     <p class="card-text text-black-50">{{ $product->description }}</p>
                 </div>
                 <div class="card-body">
-                    <a href="#" class="btn btn-sm btn-outline-info">{{ $categories[$product->category_id]->name }}</a>
+                    <a href="#" class="btn btn-sm btn-outline-info">{{ $product->category->name }}</a>
                 </div>
             </div>
         @endforeach

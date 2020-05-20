@@ -33,7 +33,7 @@
                         <div class="col-md-6">
                             <select id="category_id" class="form-control @error('category_id') is-invalid @enderror bfh-selectbox"  data-filter="true" name="category_id">
                                 @foreach($categories as $category)
-                                    <option value="{{ $category->id }}" selected>{{$category->name}}</option>
+                                    <option value="{{ $category->id }}" >{{$category->name}}</option>
                                 @endforeach
                             </select>
 
@@ -52,7 +52,7 @@
                             <textarea id="description" type="text" placeholder="Например: Очень удобная" class="form-control @error('description') is-invalid @enderror" name="description"></textarea>
 
                             @error('description')
-                            <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
@@ -60,13 +60,13 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="img" class="col-md-4 col-form-label text-md-right">{{ __('Фотография') }}</label>
+                        <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Фотография') }}</label>
 
                         <div class="col-md-6">
-                            <input id="img" type="file" class="form-control-file @error('img') is-invalid @enderror" name="img">
+                            <input id="image" type="file" class="form-control-file @error('image') is-invalid @enderror" name="image">
                             <small class="form-text text-muted">Это изображение должно быть привлекательным и приятным для пользователей.</small>
 
-                            @error('img')
+                            @error('image')
                             <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

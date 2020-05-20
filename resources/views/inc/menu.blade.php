@@ -1,7 +1,7 @@
 
 @section('menu')
 <div class="menu">
-  <a href="/">
+  <a style="text-decoration: none" href="{{ route('home') }}">
     <div class="menu-left logo">
       <span>прокупи</span><span class='logo-city'>.курган</span>
     </div>
