@@ -28,6 +28,44 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="s_name" class="col-md-4 col-form-label text-md-right">{{ __('Фамилия') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="s_name" type="text" class="form-control @error('s_name') is-invalid @enderror" name="s_name" value="{{ old('s_name') }}" autocomplete="s_name" autofocus>
+
+
+                                    @error('s_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="t_name" class="col-md-4 col-form-label text-md-right">{{ __('Отчество ') }}<small class="text-muted  align-text-top">{{ __('(если имеется) ') }}</small></label>
+
+                                <div class="col-md-6">
+                                    <input id="t_name" type="text" class="form-control @error('t_name') is-invalid @enderror" name="t_name" value="{{ old('t_name') }}" autocomplete="t_name" autofocus>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Ваша фотография') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="avatar" type="file" class="form-control-file @error('avatar') is-invalid @enderror" name="avatar">
+
+                                    @error('avatar')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
 
                                 <div class="col-md-6">
@@ -45,7 +83,35 @@
                                 <label for="phone_number" class="col-md-4 col-form-label text-md-right">{{ __('Номер телефона') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="phone_number"  type="text" class="form-control @error('phone_number') is-invalid @enderror bfh-phone" data-format="+7 (ddd) ddd-dddd" name="phone_number">
+                                    <input id="phone_number"  type="text" class="form-control @error('phone_number') is-invalid @enderror bfh-phone" data-format="+7 (ddd) ddd-dddd" value="{{ old('phone_number') }}" name="phone_number">
+                                    <small class="form-text text-muted">Для будущей связи с покупателями.</small>
+                                    @error('phone_number')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="location" class="col-md-4 col-form-label text-md-right">{{ __('Ваше место жилья') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="location"  type="text" class="form-control @error('location') is-invalid @enderror " value="{{ old('location') }}" name="location">
+                                    <small class="form-text text-muted">Для дальнейшего заполнения .</small>
+                                    @error('location')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Автобиография') }}</label>
+
+                                <div class="col-md-6">
+                                    <textarea id="description"  type="text" class="form-control @error('description') is-invalid @enderror " value="{{ old('description') }}" name="description"></textarea>
 
                                     @error('phone_number')
                                     <span class="invalid-feedback" role="alert">
