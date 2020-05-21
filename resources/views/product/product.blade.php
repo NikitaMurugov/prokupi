@@ -3,5 +3,7 @@
 @section('title')Продукт@endsection
 
 @section('content')
-    <h1>Здесь  страница продукта</h1>
+{{--    @if($products)--}}
+{{--    <h1>Здесь  страница продукта</h1>--}}
+{{--    @endif--}}
 @endsection

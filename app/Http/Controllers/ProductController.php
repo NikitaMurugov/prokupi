@@ -16,16 +16,25 @@ class ProductController extends Controller
 
     public function index()
     {
-        return view('home');
+        return view('product.product');
     }
     public function add()
     {
         $categories = Category::with('products')->get();
         return view('product.product_add', compact('categories'));
     }
-    public function get($id)
+    public function get($product_id)
     {
         return view('product.product');
+    }
+
+    public function search($search,Request $request) {
+        dd($search);
+        $products = Product::with(['categories' => function ($q) use ($search)  {
+            $q->where('id', 'like', '%'.$search.'%');
+        }])->get();
+
+        return view('product.product', compact('products'));
     }
 
     public function submit(ProductRequest $req) {
