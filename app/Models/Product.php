@@ -18,11 +18,11 @@ class Product extends Model
     'img_path'
 ];
 
-    function getImgUrlAttribute(){
-        return '/!/thumbs/users/'.$this->id.'.jpeg';
+    function getImgUrlAttribute($image_name){
+        return '/!/thumbs/users/'. $image_name;
     }
-    function getImgPathAttribute(){
-        return public_path($this->getImgUrlAttribute());
+    function getImgPathAttribute($image_name){
+        return public_path($this->getImgUrlAttribute($image_name));
     }
 
     function category() {
