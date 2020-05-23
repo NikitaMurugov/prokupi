@@ -25,7 +25,7 @@
     <div class="window window__sections">
         @foreach($categories as $category)
             <div class="section">
-                <div class="section-image"></div>
+                <div class="section-image" style="background-image: url('{{  asset('/storage'. $category->img_url) }}');"> </div>
                 <div class="section-title">
                     {{$category->name}}
                 </div>
@@ -36,7 +36,7 @@
     <div class="d-flex flex-wrap p-2 justify-content-between">
         @foreach($products as $product)
             <div class="card  col-2" style="width: 18rem;">
-                <div  style="background: url('{{ asset('/storage/' . $product->image) }}'); width: 100%;height: 200px; background-size: cover; background-position: center; border-radius: 2px"></div>
+                <div  style="background: url('{{ asset($product->image) }}'); width: 100%;height: 200px; background-size: cover; background-position: center; border-radius: 2px"></div>
                 <div class="card-body">
                     <h5 class="card-title ">{{ $product->name }}</h5>
                     <h5 class="card-subtitle text-primary">{{ $product->price }} руб.</h5>
