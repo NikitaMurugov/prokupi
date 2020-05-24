@@ -24,12 +24,14 @@
     <h1 class="window-title">Популярные категории товаров:</h1>
     <div class="window window__sections">
         @foreach($categories as $category)
-            <div class="section">
-                <div class="section-image" style="background-image: url('{{  asset('/storage'. $category->img_url) }}');"> </div>
-                <div class="section-title">
-                    {{$category->name}}
+            <a href="" style="text-decoration: none; color: #272727">
+                <div class="section">
+                    <div class="section-image" style="background-image: url({{  '/storage'. $category->img_url }});"> </div>
+                    <div class="section-title">
+                        {{$category->name}}
+                    </div>
                 </div>
-            </div>
+            </a>
         @endforeach
     </div>
     <h1 class="window-title">Последние добавленные товары:</h1>

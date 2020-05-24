@@ -32,6 +32,7 @@
 <body>
 
     @include('inc.menu')
+
     @yield('content')
 
 </body>
