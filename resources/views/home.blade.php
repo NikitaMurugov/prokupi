@@ -22,10 +22,11 @@
     </div>
 
     <h1 class="window-title">Популярные категории товаров:</h1>
-    <div class="window window__sections">
+{{--    <div class="container-fluid container marketing">--}}
+    <div class="container card-deck mb-3">
         @foreach($categories as $category)
             <a href="" style="text-decoration: none; color: #272727">
-                <div class="section">
+                <div class="section col-lg-3 col-">
                     <div class="section-image" style="background-image: url({{  '/storage'. $category->img_url }});"> </div>
                     <div class="section-title">
                         {{$category->name}}
@@ -35,10 +36,10 @@
         @endforeach
     </div>
     <h1 class="window-title">Последние добавленные товары:</h1>
-    <div class="d-flex flex-wrap p-2 justify-content-between">
+    <div class="content container-fluid ">
         @foreach($products as $product)
             <div class="card  col-2" style="width: 18rem;">
-                <div  style="background: url('{{ asset($product->image) }}'); width: 100%;height: 200px; background-size: cover; background-position: center; border-radius: 2px"></div>
+                <div  style="background: url('{{ '/storage' . $product->img_url }}'); width: 100%;height: 200px; background-size: cover; background-position: center; border-radius: 2px"></div>
                 <div class="card-body">
                     <h5 class="card-title ">{{ $product->name }}</h5>
                     <h5 class="card-subtitle text-primary">{{ $product->price }} руб.</h5>

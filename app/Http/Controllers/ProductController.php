@@ -8,8 +8,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProductRequest;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Image;
+use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
@@ -39,45 +38,35 @@ class ProductController extends Controller
 
     public function submit(ProductRequest $req) {
 
-        if (1)  {
-            $image = $req->file('image')->storePublicly('uploads/user/' . Auth::id(), 'public');
-            Product::firstOrCreate([
-                'name'=> $req->input('name'),
-                'category_id'=> $req->input('category_id'),
-                'user_id'=> Auth::id(),
-                'price'=> $req->input('price'),
-                'description'=> $req->input('description'),
-                'phone_number'=> $req->input('phone_number'),
-                'location'=> $req->input('location'),
-                'image'=> $image,
-            ]);
-        } else {
-            Image::make($req->file('image'))->save(Product::getImgUrlAttribute($req->file('image')->hashName()));
-            Product::firstOrCreate([
-                'name'=> $req->input('name'),
-                'category_id'=> $req->input('category_id'),
-                'user_id'=> Auth::id(),
-                'price'=> $req->input('price'),
-                'description'=> $req->input('description'),
-                'phone_number'=> $req->input('phone_number'),
-                'location'=> $req->input('location'),
-                'image'=> Product::getImgPathAttribute($req->file('image')->hashName()),
-            ]);
-//            $image = $req->file('image')->storePublicly('uploads/user/' . Auth::id(), 'public');
-//
-//            $product = new Product();
-//
-//            $product->name = $req->input('name');
-//            $product->category_id = $req->input('category_id');
-//            $product->user_id = Auth::id();
-//            $product->price = $req->input('price');
-//            $product->description = $req->input('description');
-//            $product->phone_number = $req->input('phone_number');
-//            $product->image = $image;
-//            $product->location = $req->input('location');
-//
-//            $product->save();
+        $model = new Product;
+        $model->fill([
+            'name'         => $req->input('name'),
+            'category_id'  => $req->input('category_id'),
+            'user_id'      => Auth::id(),
+            'description'  => $req->input('description'),
+            'phone_number' => $req->input('phone_number'),
+            'location'     => $req->input('location'),
+            'price'        => $req->input('price'),
+        ]);
+        $model->save();
+
+        if($req->hasFile('image')){
+            $img = Image::make($req->file('image'));
+            $height = $img->height();
+            $width = $img->width();
+            if($height >= 601) {
+                $img->resize(300, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+            }
+            if($width >= 601) {
+                $img->resize(null, 300, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+            }
+            $img->save($model->img_path);
         }
+
         return  redirect()->route('home');
     }
 }

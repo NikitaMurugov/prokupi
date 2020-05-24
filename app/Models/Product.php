@@ -15,15 +15,15 @@ class Product extends Model
     ];
 
     protected $appends = [
-    'img_url',
-    'img_path'
-];
+        'img_url',
+        'img_path'
+    ];
 
-    function getImgUrlAttribute($image_name){
-        return '/!/thumbs/users/'. $image_name;
+    function getImgUrlAttribute(){
+        return '/!/thumbs/products/';
     }
-    function getImgPathAttribute($image_name){
-        return public_path($this->getImgUrlAttribute($image_name));
+    function getImgPathAttribute(){
+        return storage_path($this->getImgUrlAttribute());
     }
 
     function category() {

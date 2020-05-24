@@ -18,11 +18,10 @@ class CreateProductsTable extends Migration
             $table->string("name",60);
             $table->integer("category_id")->default(0)->index();
             $table->integer("user_id")->default(0)->index();
-            $table->integer("price");
+            $table->integer("price")->default('10');
             $table->text("description");
             $table->string("phone_number",17);
             $table->string("location",350);
-            $table->text("image");
             $table->timestamps();
         });
     }
