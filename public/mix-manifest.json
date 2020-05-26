@@ -1,6 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/email-input.css": "/css/email-input.css",
+    "/js/base.js": "/js/base.js",
     "/js/bootstrap-formhelpers.min.js": "/js/bootstrap-formhelpers.min.js",
     "/js/email-input.js": "/js/email-input.js",
     "/css/all.css": "/css/all.css",

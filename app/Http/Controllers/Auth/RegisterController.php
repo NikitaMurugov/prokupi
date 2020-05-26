@@ -65,31 +65,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if  (!$data['avatar']){
-            return User::create([
-                'name' => $data['name'],
-                's_name' => $data['s_name'],
-                't_name' => $data['t_name'],
-                'email' => $data['email'],
-                'phone_number' => $data['phone_number'],
-                'location' => $data['location'],
-                'description' => $data['description'],
-                'avatar' => '',
-                'password' => Hash::make($data['password']),
-            ]);
-        } else {
-            return User::create([
-                'name' => $data['name'],
-                's_name' => $data['s_name'],
-                't_name' => $data['t_name'],
-                'email' => $data['email'],
-                'phone_number' => $data['phone_number'],
-                'location' => $data['location'],
-                'description' => $data['description'],
-                'avatar' => $data['avatar'],
-                'password' => Hash::make($data['password']),
-            ]);
-        }
+
+        return User::create([
+            'name' => $data['name'],
+            's_name' => $data['s_name'],
+            't_name' => $data['t_name'],
+            'email' => $data['email'],
+            'phone_number' => $data['phone_number'],
+            'location' => $data['location'],
+            'description' => $data['description'],
+            'avatar' => $data['avatar'],
+            'password' => Hash::make($data['password']),
+        ]);
 
     }
 }

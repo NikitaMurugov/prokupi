@@ -23,17 +23,19 @@
 
     <h1 class="window-title">Популярные категории товаров:</h1>
 {{--    <div class="container-fluid container marketing">--}}
-    <div class="container card-deck mb-3">
-        @foreach($categories as $category)
-            <a href="" style="text-decoration: none; color: #272727">
-                <div class="section col-lg-3 col-">
-                    <div class="section-image" style="background-image: url({{  '/storage'. $category->img_url }});"> </div>
-                    <div class="section-title">
-                        {{$category->name}}
+    <div class=" container-xl container-lg container-md container-sm">
+        <div class="row row-conformity row-centered">
+            @foreach($categories as $category)
+                <a href="" style="text-decoration: none; color: #272727">
+                    <div class="section ">
+                        <div class="section-image" style="background-image: url({{  '/storage'. $category->img_url }});"> </div>
+                        <div class="section-title">
+                            {{$category->name}}
+                        </div>
                     </div>
-                </div>
-            </a>
-        @endforeach
+                </a>
+            @endforeach
+        </div>
     </div>
     <h1 class="window-title">Последние добавленные товары:</h1>
     <div class="content container-fluid ">
