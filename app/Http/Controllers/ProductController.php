@@ -55,12 +55,12 @@ class ProductController extends Controller
             $height = $img->height();
             $width = $img->width();
             if($height >= 601) {
-                $img->resize(300, null, function ($constraint) {
+                $img->resize(600, null, function ($constraint) {
                     $constraint->aspectRatio();
                 });
             }
             if($width >= 601) {
-                $img->resize(null, 300, function ($constraint) {
+                $img->resize(null, 600, function ($constraint) {
                     $constraint->aspectRatio();
                 });
             }

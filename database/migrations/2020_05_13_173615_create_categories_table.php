@@ -17,6 +17,38 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('name');
         });
+
+        DB::table('categories')->insert([
+            'name' => 'Бытовая электроника',
+        ]);
+
+        DB::table('categories')->insert([
+            'name' => 'Для квартиры и дома',
+        ]);
+
+        DB::table('categories')->insert([
+            'name' => 'Хобби и отдых',
+        ]);
+
+        DB::table('categories')->insert([
+            'name' => 'Транспорт',
+        ]);
+
+        DB::table('categories')->insert([
+            'name' => 'Недвижимость',
+        ]);
+
+        DB::table('categories')->insert([
+            'name' => 'Личные вещи',
+        ]);
+
+        DB::table('categories')->insert([
+            'name' => 'Животные',
+        ]);
+
+        DB::table('categories')->insert([
+            'name' => 'Услуги',
+        ]);
     }
 
     /**

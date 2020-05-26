@@ -23,8 +23,7 @@
 
     <h1 class="window-title">Популярные категории товаров:</h1>
 {{--    <div class="container-fluid container marketing">--}}
-    <div class=" container-xl container-lg container-md container-sm">
-        <div class="row row-conformity row-centered">
+    <div class="window ">
             @foreach($categories as $category)
                 <a href="" style="text-decoration: none; color: #272727">
                     <div class="section ">
@@ -35,22 +34,26 @@
                     </div>
                 </a>
             @endforeach
-        </div>
     </div>
     <h1 class="window-title">Последние добавленные товары:</h1>
-    <div class="content container-fluid ">
-        @foreach($products as $product)
-            <div class="card  col-2" style="width: 18rem;">
-                <div  style="background: url('{{ '/storage' . $product->img_url }}'); width: 100%;height: 200px; background-size: cover; background-position: center; border-radius: 2px"></div>
-                <div class="card-body">
-                    <h5 class="card-title ">{{ $product->name }}</h5>
-                    <h5 class="card-subtitle text-primary">{{ $product->price }} руб.</h5>
-                    <p class="card-text text-black-50">{{ $product->description }}</p>
+    <div class="container-xl container-lg  container-md container-sm">
+        <div class="row">
+            @foreach($products as $product)
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-img-top" style="background: url('{{ '/' . $product->img_url }}') center; width: 100%;height: 200px; background-size: cover; border-radius: 2px"></div>
+                        <div class="card-body">
+                            <h5 class="card-title ">{{ $product->name }}</h5>
+                            <h5 class="card-subtitle text-primary">{{ $product->price }} руб.</h5>
+                            <p class="card-text text-black-50">{{ $product->description }}</p>
+                        </div>
+                        <div class="card-body">
+{{--                            <a href="#" class="btn btn-sm btn-outline-info">{{ $product->category->name }}</a>--}}
+                            <a href="#" class="text-muted small float-right">Подробнее..</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <a href="#" class="btn btn-sm btn-outline-info">{{ $product->category->name }}</a>
-                </div>
-            </div>
-        @endforeach
+            @endforeach
+        </div>
     </div>
 @endsection

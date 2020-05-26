@@ -20,10 +20,10 @@ class Product extends Model
     ];
 
     function getImgUrlAttribute(){
-        return '/!/thumbs/products/';
+        return 'storage/!/thumbs/products/' . $this->id . '.jpg';
     }
     function getImgPathAttribute(){
-        return storage_path($this->getImgUrlAttribute());
+        return public_path($this->getImgUrlAttribute());
     }
 
     function category() {
