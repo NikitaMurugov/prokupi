@@ -27,6 +27,7 @@ class ProductRequest extends FormRequest
             'name' => 'required',
             'price' => 'required',
             'description' => 'required',
+            'image' => 'required',
             'phone_number' => 'required|min:17|max:17',
             'location' => 'required'
         ];
@@ -37,6 +38,7 @@ class ProductRequest extends FormRequest
            'name.required' => 'Поле имя является обязательным',
            'price.required' => 'Поле цена является обязательным',
            'description.required' => 'Поле описание товара является обязательным',
+           'image.required' => 'Добавление фото является обязательным',
            'phone_number.required' => 'Поле номер телефона является обязательным',
            'phone_number.max' => 'Поле номер телефона должен содержать 12 символов (+79000000000)',
            'phone_number.min' => 'Поле номер телефона должен содержать 12 символов (+79000000000)',
