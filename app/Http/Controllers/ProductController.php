@@ -17,23 +17,38 @@ class ProductController extends Controller
     {
         return view('product.product');
     }
+
     public function add()
     {
         $categories = Category::with('products')->get();
         return view('product.product_add', compact('categories'));
     }
+
     public function get($product_id)
     {
         return view('product.product');
     }
 
-    public function search($search,Request $request) {
-        dd($search);
-        $products = Product::with(['categories' => function ($q) use ($search)  {
-            $q->where('id', 'like', '%'.$search.'%');
-        }])->get();
+    public function search(Request $request) {
+//        $cat      = Category::with('products')->get();
+        $search   = $request->input('search');
+        $products = Product::
 
-        return view('product.product', compact('products'));
+//        when($cat, function ($q) use ($cat) {
+//            $q->where('category_id', '=', $cat->id);
+//        })
+            when($search, function ($q) use ($search) {
+                $q->where(function ($q) use ($search) {
+                    $q->orWhere('name', 'like', $search . '%');
+//                    $q->orWhereHas('category', function ($q) use ($search) {
+//                        $q->where('name', 'like', '%' . $search . '%');
+//                    });
+                });
+
+            })
+            ->orderByRaw('created_at DESC')->get();
+        $prod_count = $products->count();
+        return view('product.product', compact('products', 'prod_count', 'search'));
     }
 
     public function submit(ProductRequest $req) {
@@ -48,6 +63,7 @@ class ProductController extends Controller
             'location'     => $req->input('location'),
             'price'        => $req->input('price'),
         ]);
+
         $model->save();
 
         if($req->hasFile('image')){

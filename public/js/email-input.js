@@ -96,7 +96,7 @@
 window.onload = function () {
   var email = document.querySelector('.email'),
       auto = document.querySelector('.autosuffix'),
-      popularEmails = ['yandex.ru', 'mail.ru', 'inbox.ru', 'list.ru', 'bk.ru'],
+      popularEmails = ['yandex.ru', 'mail.ru', 'inbox.ru', 'list.ru', 'bk.ru', 'bd.ru', 'bc.ru'],
       itemSelected = 0,
       itemList = [];
   window.addEventListener('keyup', function () {

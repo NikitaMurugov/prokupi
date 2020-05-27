@@ -27,7 +27,7 @@ class HomeController extends Controller
     {
 
         $categories = Category::with('products')->get();
-        $products = Product::with('category')->get();
+        $products = Product::with('category')->orderByRaw('created_at DESC')->get();
 //        $categories = Category::get();
 //        foreach ($categories as $category) {
 //            dd($category->products);

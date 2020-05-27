@@ -1,9 +1,9 @@
 
 .window-title {
-  margin: 0 auto;
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 24px;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
 }
 
 .menu {
@@ -14,8 +14,14 @@
 
 }
 
+.menu-left {
+    display: flex;
+    align-items: center;
+}
+
 .logo {
     color: #272727;
+    margin-right: 20px;
 }
 .logo a {
     text-decoration: none;
@@ -54,6 +60,22 @@
     font-size: 9px;
 }
 
+.form-search {
+    display: flex;
+    /*justify-content: center;*/
+    align-items: center;
+}
+
+.form-search .fa-search {
+    margin-left: -40px;
+}
+
+.search-input {
+    border: 1px solid #272727;
+    width: 250px;
+    padding-right: 40px;
+}
+
 .section {
     width: 250px;
     height: 250px;
@@ -86,7 +108,13 @@
 }
 
 .card {
-    width: 250px;
+    /*width: 250px;*/
     margin-bottom: 50px;
+}
+
+.card-text-fixed {
+    height: 80px;
+    overflow: hidden;
+
 }
 

@@ -20,7 +20,7 @@
             </div>
             <div class="row">
                 <div class="content col-xl-8">
-                    <form method="POST" action="{{-- route('update_user') --}}">
+                    <form method="POST" action="{{ route('update_user') }}">
                         <div class="row">
                             <div class="col-md-4 col-sm-12">
                                 <div class="form-group">
