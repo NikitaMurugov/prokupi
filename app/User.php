@@ -41,4 +41,8 @@ class User extends Authenticatable
     function products() {
         return $this->hasMany(Product::class, 'user_id');
     }
+
+    function commentaries() {
+        return $this->hasMany(Commentary::class, 'sender_id');
+    }
 }

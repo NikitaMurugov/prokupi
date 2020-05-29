@@ -64,7 +64,7 @@
                                 <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Фотография') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="image" type="file" class="form-control-file @error('image') is-invalid @enderror" name="image">
+                                    <input id="image" type="file" class="form-control-file @error('image') is-invalid @enderror" name="image" accept="image/jpeg, image/png">
                                     <small class="form-text text-muted">Это изображение должно быть привлекательным и приятным для пользователей.</small>
 
                                     @error('image')

@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
 
-        $categories = Category::with('products')->get();
+        $categories = Category::all();
         $products = Product::with('category')->orderByRaw('created_at DESC')->get();
 //        $categories = Category::get();
 //        foreach ($categories as $category) {

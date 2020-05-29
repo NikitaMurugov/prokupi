@@ -26,14 +26,17 @@
 {{--    <div class="container-fluid container marketing">--}}
     <div class="window ">
             @foreach($categories as $category)
-                <a href="" style="text-decoration: none; color: #272727">
-                    <div class="section ">
+                <form action="{{ route('search') }}" style="text-decoration: none; color: #272727">
+                    @csrf
+                    <div class="section">
                         <div class="section-image" style="background-image: url({{  '/storage'. $category->img_url }});"> </div>
                         <div class="section-title">
-                            {{$category->name}}
+                            {{$category->name}} ({{ $category->products_count }})
                         </div>
+                        <input style="display: none" type="number" name="category_id" value="{{ $category->id }}">
+                        <button style="display: none"  class="category-button" id="cat-{{ $category->id }}"></button>
                     </div>
-                </a>
+                </form>
             @endforeach
     </div>
     <h1 class="window-title">Последние добавленные товары:</h1>
@@ -50,10 +53,10 @@
                         </div>
                         <div class="card-body">
 {{--                            <a href="#" class="btn btn-sm btn-outline-info">{{ $product->category->name }}</a>--}}
-                            <a href="#" class="text-muted small float-right">Подробнее..</a>
+                            <a href="{{asset('products/' . $product->id)}}" class="text-muted small float-right">Подробнее..</a>
                         </div>
                         <div class="card-footer">
-                            <small class="text-muted">{{ $product->created_at }}</small>
+                            <small class="text-muted"> Дата: {{ \Carbon\Carbon::parse($product->created_at)->format('d.m.Y') }}</small>
                         </div>
                     </div>
                 </div>
@@ -61,3 +64,19 @@
         </div>
     </div>
 @endsection
+
+
+@push("scripts")
+    <script>
+        window.onload = function () {
+            let sections = document.querySelectorAll('.section');
+
+            sections.forEach(function (section) {
+                section.addEventListener('click', function () {
+                    let button = section.querySelector('.category-button');
+                    button.click();
+                })
+            });
+        };
+    </script>
+@endpush

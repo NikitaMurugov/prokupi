@@ -6,10 +6,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProductRequest;
 use Intervention\Image\Facades\Image;
-
+use Carbon\Carbon;
 class ProductController extends Controller
 {
 
@@ -24,15 +25,23 @@ class ProductController extends Controller
         return view('product.product_add', compact('categories'));
     }
 
-    public function get($product_id)
+    public function get(Request $req)
     {
-        return view('product.product');
+
+//        \DB::enableQueryLog();
+        $product = Product::with('category', 'user')->where('id',(int)$req->route('product_id'))->first();
+//        dd(\DB::getQueryLog());
+//        dd($product);
+
+        return view('product.product', compact('product'));
     }
 
     public function search(Request $request) {
 //        $cat      = Category::with('products')->get();
         $search   = $request->input('search');
-        $products = Product::
+        $cat   = $request->input('category_id');
+        if (isset($search)) {
+            $products = Product::
 
 //        when($cat, function ($q) use ($cat) {
 //            $q->where('category_id', '=', $cat->id);
@@ -46,9 +55,31 @@ class ProductController extends Controller
                 });
 
             })
-            ->orderByRaw('created_at DESC')->get();
-        $prod_count = $products->count();
-        return view('product.product', compact('products', 'prod_count', 'search'));
+                ->orderByRaw('created_at DESC')->get();
+            $prod_count = $products->count();
+            return view('product.products', compact('products', 'prod_count', 'search'));
+        } elseif ($cat) {
+            $products = Product::
+
+//          when($cat, function ($q) use ($cat) {
+//              $q->where('category_id', '=', $cat->id);
+//          })
+            when($cat, function ($q) use ($cat) {
+                $q->where(function ($q) use ($cat) {
+                    $q->orWhere('category_id', 'like', $cat . '%');
+//                    $q->orWhereHas('category', function ($q) use ($search) {
+//                        $q->where('name', 'like', '%' . $search . '%');
+//                    });
+                });
+
+            })
+                ->orderByRaw('created_at DESC')->get();
+            $prod_count = $products->count();
+            return view('product.products', compact('products', 'prod_count', 'search'));
+        } else {
+            return back();
+        }
+
     }
 
     public function submit(ProductRequest $req) {

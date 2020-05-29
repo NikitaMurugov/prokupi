@@ -57,8 +57,8 @@ a {
     height: 100%;
     background: url("/storage/!/thumbs/banners/banner.svg") center;
     position: absolute;
-    background-size: 100%;
-    opacity: 0.5;
+    background-size: 1640px;
+    opacity: 0.7;
     z-index: -1;
 }
 

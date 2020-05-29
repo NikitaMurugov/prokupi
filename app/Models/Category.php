@@ -12,9 +12,11 @@ class Category extends Model
     protected $fillable = [
         'name',
     ];
+
     protected $withCount = [
         'products',
     ];
+
     protected $appends = [
         'img_url',
     ];

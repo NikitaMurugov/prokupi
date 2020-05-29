@@ -19,7 +19,7 @@ Route::get('/cabinet', 'CabinetController@index')->name('cabinet');
 Route::get('/products', 'ProductController@search')->name('search');
 Route::get('/product/add', 'ProductController@add')->name('product_add');
 Route::post('/product/submit', 'ProductController@submit')->name('product_submit');
-//Route::get('/products/{Product}', 'ProductController@get')->name('product_get');
+Route::get('/products/{product_id}', 'ProductController@get')->name('product_get');
 //Route::get('/products/', 'ProductController@search')->name('search');
 
-Route::post('/update/user', 'CabinetController@update_user')->name('update_user');
+Route::post('/update/user', 'UpdateController@update_user')->name('update_user');

@@ -1,0 +1,13 @@
+.window__footer {
+    width: 100vh;
+    height: 500px;
+    background: #272727;
+    color: #CD75F6;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

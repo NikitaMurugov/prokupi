@@ -23,7 +23,9 @@ class UpdateController extends Controller
             'password',
         ]));
         $user->save();
-        return route('cabinet');
 
+
+//        return  redirect()->route('cabinet');
+        return true;
     }
 }

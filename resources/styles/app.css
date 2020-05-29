@@ -64,10 +64,12 @@
     display: flex;
     /*justify-content: center;*/
     align-items: center;
+    margin-right: -40px;
 }
 
-.form-search .fa-search {
+.fa-search {
     margin-left: -40px;
+    cursor: pointer;
 }
 
 .search-input {
@@ -118,3 +120,8 @@
 
 }
 
+.product-card__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

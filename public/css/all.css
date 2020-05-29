@@ -136,8 +136,8 @@ a {
     height: 100%;
     background: url("/storage/!/thumbs/banners/banner.svg") center;
     position: absolute;
-    background-size: 100%;
-    opacity: 0.5;
+    background-size: 1640px;
+    opacity: 0.7;
     z-index: -1;
 }
 
@@ -220,10 +220,12 @@ a {
     display: flex;
     /*justify-content: center;*/
     align-items: center;
+    margin-right: -40px;
 }
 
-.form-search .fa-search {
+.fa-search {
     margin-left: -40px;
+    cursor: pointer;
 }
 
 .search-input {
@@ -274,3 +276,22 @@ a {
 
 }
 
+.product-card__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.window__footer {
+    width: 100vh;
+    height: 500px;
+    background: #272727;
+    color: #CD75F6;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
