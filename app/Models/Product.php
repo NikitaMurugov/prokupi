@@ -15,14 +15,18 @@ class Product extends Model
 
 
     protected $fillable = [
-        'name', 'category_id','user_id', 'price', 'description', 'phone_number',  'location', 'image',
+        'name', 'category_id','user_id', 'price', 'description', 'phone_number',  'location', 'img',
     ];
 
     protected $appends = [
         'img_url',
-        'img_path'
+        'img_path',
+        'index'
     ];
 
+    function getIndexAttribute(){
+        return $this->id;
+    }
     function getImgUrlAttribute(){
         return 'storage/!/thumbs/products/' . $this->id . '.jpg';
     }

@@ -18,7 +18,9 @@ class CreateCommentariesTable extends Migration
             $table->integer('product_id');
             $table->integer('sender_id');
             $table->text('message');
+            $table->boolean('deleted')->default(false);
             $table->timestamps();
+            $table->timestamp('deleted-at')->nullable();
         });
     }
 

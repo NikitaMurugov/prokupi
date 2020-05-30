@@ -31,7 +31,7 @@
                 <a class='text-dark' href="{{ route('register') }}">{{ __('Регистрация') }}</a>
             @endif
             @else
-                <a class='text-dark' href="{{ route('cabinet') }}">
+                <a class='text-dark user-name-text' href="{{ route('cabinet') }}">
                     {{ Auth::user()->name }}
                 </a>
 

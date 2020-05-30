@@ -68,7 +68,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-info btn-fill pull-right">Обновить пользователя</button>
+                    <button type="submit" class="btn btn-info btn-fill pull-right button-submitform">Обновить пользователя</button>
                     <div class="clearfix"></div>
                 </form>
             </div>
@@ -76,4 +76,74 @@
         </div>
     </div>
 @endsection
+
+@push("scripts")
+    <script>
+
+        function updateUser(ev) {
+            let data = {};
+
+            $('#update-user').find('input, textearea, select').each(function () {
+                data[this.name] = $(this).val();
+            });
+            $.ajax({
+                url: '/update/user',
+                type: 'post',
+                data: data,
+                success: function success(result) {
+
+                    document.querySelector('.user-name-text').innerHTML = $('#name').val();
+
+
+                    let modalInfo = document.createElement('div');
+                    modalInfo.classList.add('modal-window');
+                    modalInfo.style.opacity = '0';
+                    modalInfo.style.opacity = '1';
+
+                    let modalBody = document.createElement('div');
+                    modalBody.classList.add('modal-body');
+                    modalBody.classList.add('modal-info');
+
+                    let modalTitle = document.createElement('h3');
+                    modalTitle.classList.add('modal-body__title');
+                    modalTitle.innerHTML = 'Успех!';
+
+                    let modalHr = document.createElement('hr');
+                    modalHr.classList.add('modal-body__hr');
+
+                    let modalText = document.createElement('span');
+                    modalText.classList.add('modal-body__text');
+                    modalText.innerHTML = 'Вы успешно обновили данные вашей учётной записи';
+
+                    modalBody.appendChild(modalTitle);
+                    modalBody.appendChild(modalHr);
+                    modalBody.appendChild(modalText);
+
+                    let modalClose = document.createElement('div');
+                    modalClose.classList.add('modal-close');
+                    let faTimes = document.createElement('i');
+                    faTimes.classList.add('fas');
+                    faTimes.classList.add('fa-times');
+                    faTimes.addEventListener('click',function (ev) {
+                        modalInfo.remove();
+                    });
+                    modalClose.appendChild(faTimes);
+
+
+
+                    modalInfo.appendChild(modalBody);
+                    modalInfo.appendChild(modalClose);
+                    document.body.appendChild(modalInfo);
+
+                    setTimeout(function () {
+                        modalInfo.style.opacity = '0';
+                        setTimeout(function () {
+                            modalInfo.remove();
+                        }, 200);
+                    }, 1800);
+                }
+            });
+        }
+    </script>
+@endpush
 

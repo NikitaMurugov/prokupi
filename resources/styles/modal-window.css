@@ -1,0 +1,70 @@
+.modal-window {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(50, 50, 50, 0.5);
+    transition: 250ms;
+}
+
+.modal-body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    width: 400px;
+    height: 200px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+
+}
+
+.modal-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+
+}
+
+.modal-body__title {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+.modal-body__hr {
+    width: 300px;
+    height: 1px;
+    background: #272727;
+}
+
+.modal-body__text {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.modal-close {
+    position: fixed;
+    width: 35px;
+    height: 35px;
+    top: 0;
+    right: 0;
+    margin: 25px;
+}
+.modal-close i{
+    font-size: 35px;
+    color: #fff;
+    cursor: pointer;
+}
+

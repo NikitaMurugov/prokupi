@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use Faker\Factory;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
@@ -84,6 +85,25 @@ class ProductController extends Controller
 
     public function submit(ProductRequest $req) {
 
+        if (0) {
+            for ($i = 0; $i <= 20;  $i++) {
+                $faker = Factory::create('ru_RU');
+
+                $model = new Product;
+                $model->fill([
+                    'name'         => $faker->word,
+                    'category_id'  => rand(1,8),
+                    'user_id'      => rand(1,11),
+                    'description'  => $faker->text,
+                    'phone_number' => $faker->phoneNumber,
+                    'location'     => $faker->address,
+                    'price'        => rand(1000,50000),
+                    'img'          => $faker->image('storage/!/thumbs/products/', 640,480, null, false)
+                ]);
+                $model->save();
+
+            }
+        }
         $model = new Product;
         $model->fill([
             'name'         => $req->input('name'),
@@ -93,11 +113,15 @@ class ProductController extends Controller
             'phone_number' => $req->input('phone_number'),
             'location'     => $req->input('location'),
             'price'        => $req->input('price'),
+            'img'          => '',
         ]);
 
         $model->save();
 
-        if($req->hasFile('image')){
+        if(1){
+            $model->update([
+                'img'          => $model->index . '.jpg',
+            ]);
             $img = Image::make($req->file('image'));
             $height = $img->height();
             $width = $img->width();

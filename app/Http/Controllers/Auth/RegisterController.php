@@ -65,6 +65,21 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if (0) {
+            $faker = \Faker\Factory::create('ru_RU');
+            for ($i = 0; $i < 10; $i++) {
+                User::create([
+                    'name' => $faker->firstName,
+                    's_name' => $faker->lastName,
+                    't_name' => $faker->monthName,
+                    'email' => $faker->email,
+                    'phone_number' => $faker->phoneNumber,
+                    'location' => $faker->address,
+                    'description' => $faker->text,
+                    'password' => Hash::make('123123123'),
+                ]);
+            }
+        }
 
         return User::create([
             'name' => $data['name'],
@@ -76,6 +91,7 @@ class RegisterController extends Controller
             'description' => $data['description'],
             'password' => Hash::make($data['password']),
         ]);
+
 
     }
 }

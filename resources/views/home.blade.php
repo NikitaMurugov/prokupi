@@ -26,7 +26,7 @@
 {{--    <div class="container-fluid container marketing">--}}
     <div class="window ">
             @foreach($categories as $category)
-                <form action="{{ route('search') }}" style="text-decoration: none; color: #272727">
+                <form method="get" action="{{ route('search') }}" style="text-decoration: none; color: #272727">
                     @csrf
                     <div class="section">
                         <div class="section-image" style="background-image: url({{  '/storage'. $category->img_url }});"> </div>
@@ -34,7 +34,7 @@
                             {{$category->name}} ({{ $category->products_count }})
                         </div>
                         <input style="display: none" type="number" name="category_id" value="{{ $category->id }}">
-                        <button style="display: none"  class="category-button" id="cat-{{ $category->id }}"></button>
+                        <input style="display: none" type="submit" class="category-button">
                     </div>
                 </form>
             @endforeach
@@ -45,7 +45,7 @@
             @foreach($products as $product)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <div class="card ">
-                        <div class="card-img-top" style="background: url('{{ '/' . $product->img_url }}') center; width: 100%;height: 200px; background-size: cover; border-radius: 2px"></div>
+                        <div class="card-img-top" style="background: url('{{ '/storage/!/thumbs/products/' . $product->img }}') center; width: 100%;height: 200px; background-size: cover; border-radius: 2px"></div>
                         <div class="card-body">
                             <h5 class="card-title ">{{ $product->name }}</h5>
                             <h5 class="card-subtitle text-primary">{{ $product->price }} руб.</h5>
@@ -70,7 +70,6 @@
     <script>
         window.onload = function () {
             let sections = document.querySelectorAll('.section');
-
             sections.forEach(function (section) {
                 section.addEventListener('click', function () {
                     let button = section.querySelector('.category-button');
