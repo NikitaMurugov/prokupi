@@ -23,6 +23,6 @@ Route::get('/product/edit/{product_id}', 'ProductController@edit')->name('produc
 Route::get('/products/{product_id}', 'ProductController@get')->name('product.get');
 
 Route::post('/update/user', 'UpdateController@updateUser')->name('update.user');
-Route::post('/update/product', 'UpdateController@updateProduct')->name('update.product');
+Route::post('/update/product/{product_id}', 'UpdateController@updateProduct')->name('update.product');
 
 Route::post('/delete/product', 'DeleteController@deleteProduct')->name('delete.product');

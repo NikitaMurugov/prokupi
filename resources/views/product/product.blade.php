@@ -29,7 +29,7 @@
                 <small class="text-muted float-left">Объявление было подано: {{ \Carbon\Carbon::parse($product->created_at)->format('d.m.Y') }} в  {{ \Carbon\Carbon::parse($product->created_at)->format('H:i') }}</small>
                 <form action="{{route('delete.product')}}"></form>
                 @if(Auth::id() == $product->user_id)
-                    <small class="float-right text-danger font-weight-bold"><i class="far fa-trash-alt"></i> Удалить объявление</small>
+                    <a href="{{ route('product.edit', $product->id) }}"><small class="float-right text-info font-weight-bold"><i class="far fa-pencil"></i> Редактировать объявление</small></a>
                 @endif
             </div>
         </div>

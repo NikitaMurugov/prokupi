@@ -28,18 +28,25 @@
                             <div class="form-group">
                                 <label for="s_name">Фамилия</label>
                                 <input id="s_name" type="text" class="form-control"  placeholder="{{ __('Фамилия') }}" value="{{ $user->s_name }}" name="s_name">
+                                <span style="display: none" class="invalid-feedback s_name-invalid-feedback" role="alert">
+                                    <strong></strong>
+                                </span>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <div class="form-group">
                                 <label for="name">Имя</label>
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="{{ __('Имя') }}" value="{{ $user->name }}" name="name">
+                                <span style="display: none" class="invalid-feedback name-invalid-feedback" role="alert">
+                                    <strong></strong>
+                                </span>
                             </div>
                         </div>
                         <div class="col-md-4  col-sm-12">
                             <div class="form-group">
                                 <label for="t_name">Отчество</label>
                                 <input id="t_name" type="text" class="form-control" placeholder="{{ __('Отчество') }}" value="{{ $user->t_name }}" name="t_name">
+
                             </div>
                         </div>
                     </div>
@@ -49,12 +56,18 @@
                             <div class="form-group">
                                 <label for="phone_number">Номер  телефона</label>
                                 <input id="phone_number"  type="text" class="form-control @error('phone_number') is-invalid @enderror bfh-phone" data-format="+7 (ddd) ddd-dddd" value="{{ $user->phone_number }}" name="phone_number">
+                                <span style="display: none" class="invalid-feedback phone_number-invalid-feedback" role="alert">
+                                    <strong></strong>
+                                </span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="email">E-mail</label>
                                 <input id="email"  type="text" class="form-control @error('email') is-invalid @enderror" value="{{ $user->email }}"  name="email">
+                                <span style="display: none" class="invalid-feedback email-invalid-feedback" role="alert">
+                                    <strong></strong>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -78,7 +91,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-info btn-fill pull-right button-submitform">Обновить пользователя</button>
-                    <div class="clearfix"></div>
+
                 </form>
             </div>
             <div class="content col-4"></div>
@@ -125,70 +138,116 @@
 @push("scripts")
     <script>
 
+        function getAndValidateUpdateUser(data, errors) {
+
+        }
+
         function updateUser(ev) {
             let data = {};
-
-            $('#update-user').find('input, textearea, select').each(function () {
+            let inputs = {};
+            let errors = {};
+            errors.clean();
+            $('#update-user').find('input, textearea').each(function () {
+                inputs[this.name] = $(this);
                 data[this.name] = $(this).val();
             });
-            $.ajax({
-                url: '/update/user',
-                type: 'post',
-                data: data,
-                success: function success(result) {
 
-                    document.querySelector('.user-name-text').innerHTML = $('#name').val();
+            if (data['name'] === '') {
+                errors.name = 'Поле "имя" является обязательным';
+            }
+            if (data['s_name'] === '') {
+                errors.s_name = 'Поле "фамилия" является обязательным';
+            }
+            if (data['email'] === '') {
+                errors.email = 'Поле "почта" является обязательным';
+            }
+            if (data['phone_number'] === '') {
+                errors.phone_number = 'Поле "номер телефона" является обязательным';
+            }
+            if (data['phone_number'].split().length !== 17) {
+                errors.phone_number = 'Поле "номер телефона" не полностью  заполнено';
 
+            }
+            if (data['location'] === '') {
+                errors.location = 'Поле "адресс" является обязательным';
+            }
 
-                    let modalInfo = document.createElement('div');
-                    modalInfo.classList.add('modal-window');
-                    modalInfo.style.opacity = '0';
-                    modalInfo.style.opacity = '1';
+            if (Object.keys(errors).length === 0) {
 
-                    let modalBody = document.createElement('div');
-                    modalBody.classList.add('modal-body');
-                    modalBody.classList.add('modal-info');
-
-                    let modalTitle = document.createElement('h3');
-                    modalTitle.classList.add('modal-body__title');
-                    modalTitle.innerHTML = 'Успех!';
-
-                    let modalClose = document.createElement('div');
-                    modalClose.classList.add('modal-close');
-                    let faTimes = document.createElement('i');
-                    faTimes.classList.add('fal');
-                    faTimes.classList.add('fa-times');
-                    faTimes.addEventListener('click',function (ev) {
-                        modalInfo.remove();
-                    });
-                    modalClose.appendChild(faTimes);
-                    let modalHr = document.createElement('hr');
-                    modalHr.classList.add('modal-body__hr');
-
-                    let modalText = document.createElement('span');
-                    modalText.classList.add('modal-body__text');
-                    modalText.innerHTML = 'Вы успешно обновили данные вашей учётной записи';
-
-                    modalBody.appendChild(modalClose);
-                    modalBody.appendChild(modalTitle);
-                    modalBody.appendChild(modalHr);
-                    modalBody.appendChild(modalText);
-
-
-
-
-
-                    modalInfo.appendChild(modalBody);
-                    document.body.appendChild(modalInfo);
-
-                    setTimeout(function () {
-                        modalInfo.style.opacity = '0';
-                        setTimeout(function () {
-                            modalInfo.remove();
-                        }, 200);
-                    }, 2500);
+                for(let input in inputs) {
+                    inputs[input].classList.remove('is-invalid');
+                    let messageBlock = inputs[input].parentNode.querySelector("." + input + "-invalid-feedback");
+                    messageBlock.style.display = 'none';
+                    messageBlock.childNodes[0].val('');
                 }
-            });
+                $.ajax({
+                    url: '/update/user',
+                    type: 'post',
+                    data: data,
+                    success: function success(result) {
+
+                        document.querySelector('.user-name-text').innerHTML = $('#name').val();
+
+
+                        let modalInfo = document.createElement('div');
+                        modalInfo.classList.add('modal-window');
+                        modalInfo.style.opacity = '0';
+                        modalInfo.style.opacity = '1';
+
+                        let modalBody = document.createElement('div');
+                        modalBody.classList.add('modal-body');
+                        modalBody.classList.add('modal-info');
+
+                        let modalTitle = document.createElement('h3');
+                        modalTitle.classList.add('modal-body__title');
+                        modalTitle.innerHTML = 'Успех!';
+
+                        let modalClose = document.createElement('div');
+                        modalClose.classList.add('modal-close');
+                        let faTimes = document.createElement('i');
+                        faTimes.classList.add('fal');
+                        faTimes.classList.add('fa-times');
+                        faTimes.addEventListener('click',function (ev) {
+                            modalInfo.remove();
+                        });
+                        modalClose.appendChild(faTimes);
+                        let modalHr = document.createElement('hr');
+                        modalHr.classList.add('modal-body__hr');
+
+                        let modalText = document.createElement('span');
+                        modalText.classList.add('modal-body__text');
+                        modalText.innerHTML = 'Вы успешно обновили данные вашей учётной записи';
+
+                        modalBody.appendChild(modalClose);
+                        modalBody.appendChild(modalTitle);
+                        modalBody.appendChild(modalHr);
+                        modalBody.appendChild(modalText);
+
+
+
+
+
+                        modalInfo.appendChild(modalBody);
+                        document.body.appendChild(modalInfo);
+
+                        setTimeout(function () {
+                            modalInfo.style.opacity = '0';
+                            setTimeout(function () {
+                                modalInfo.remove();
+                            }, 200);
+                        }, 2500);
+                    }
+                });
+            } else {
+                for(let error in errors) {
+                    console.log(inputs[error][0]);
+                    inputs[error][0].classList.add('is-invalid');
+                    let messageBlock = inputs[error][0].parentNode.querySelector("." + error + "-invalid-feedback");
+                    console.log(messageBlock.childNodes[1]);
+                    messageBlock.style.display = 'block';
+                    messageBlock.childNodes[1].innerText = errors[error];
+                }
+            }
         }
     </script>
 @endpush

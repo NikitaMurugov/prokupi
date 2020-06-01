@@ -117,9 +117,9 @@ class ProductController extends Controller
                     'img'          => $faker->image('storage/!/thumbs/products/', 640,480, null, false)
                 ]);
                 $model->save();
-
             }
         }
+
         $model = new Product;
 
         $model->fill([

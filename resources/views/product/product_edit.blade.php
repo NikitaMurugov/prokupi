@@ -11,10 +11,10 @@
 
     <div class="container-xl container-lg container-md container-sm">
 
-        <div class="">
-            <form action="{{ route('update.product') }}"></form>
+            <form method="post" action="{{ route('update.product', $product->id) }}" enctype="multipart/form-data">
+                @csrf
                 <div class="row">
-                    <div class="card-body col-8">
+                    <div class="card-body col-md-8 col-sm-12">
 
                         <div class="form-group">
                             <label for="name" class="small">Название объявления:</label>
@@ -29,7 +29,8 @@
 
                         <div class="form-group">
                             <label for="image" class="small"> Загрузка нового изображения:</label>
-                            <input id="image" type="file" class="form-control-file @error('image') is-invalid @enderror" name="image" accept="image/jpeg, image/png">
+                            <input id="image" type="file" class="form-control-file " name="image" accept="image/jpeg, image/png">
+{{--                            <input id="image" type="file" class="form-control-file @error('image') is-invalid @enderror" name="image" accept="image/jpeg, image/png">--}}
                             <small class="form-text text-muted">Это изображение должно быть привлекательным и приятным для пользователей.</small>
 
                             @error('image')
@@ -41,7 +42,7 @@
 
 
                         <div class="form-group">
-                            <div class="card-img-left" style="background: url('{{'/storage/!/thumbs/products/' . $product->img}}') center no-repeat;height: 350px; background-size: cover; border-radius: 10px;  border: 1px  solid #6c757d">
+                            <div class=" col-lg-6 col-md-12 col-sm-12 card-img-left" style="background: url('{{'/storage/!/thumbs/products/' . $product->img}}') center no-repeat;height: 350px; background-size: cover; border-radius: 10px;  border: 1px  solid #6c757d; padding: 0">
                                 <span class="card_old-img">Старое изображение</span>
                             </div>
 
@@ -60,11 +61,8 @@
                         </div>
 
 
-                        <button type="submit" class="btn btn-primary">
-                            {{ __('Обновить информацию') }}
-                        </button>
                     </div>
-                    <div class="card-body col-4">
+                    <div class="card-body col-md-4 col-sm-12">
                         <div class="form-group">
                             <label for="category_id" class="small">{{ __('Категория товара') }}</label>
 
@@ -103,7 +101,13 @@
                         </div>
 
                     </div>
+                    <div class="card-body col-12">
+                        <button type="submit" class="btn btn-primary">
+                            {{ __('Обновить информацию') }}
+                        </button>
+                    </div>
                 </div>
+            </form>
                 <div class="card-footer">
                     <small class="text-muted">Объявление было подано: {{ \Carbon\Carbon::parse($product->created_at)->format('d.m.Y') }} в  {{ \Carbon\Carbon::parse($product->created_at)->format('H:i') }}</small>
 

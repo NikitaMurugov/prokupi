@@ -6,14 +6,23 @@ use App\Models\Product;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\UpdateProductRequest;
 
 class UpdateController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function updateUser(UpdateUserRequest $request)
     {
+//        \DB::enableQueryLog();
         $user = Auth::user();
+//        dd(\DB::getQueryLog());
         $user->fill($request->only([
             'name',
             's_name',
@@ -31,24 +40,47 @@ class UpdateController extends Controller
 //        return  redirect()->route('cabinet');
         return true;
     }
-    public function updateProduct(UpdateProductRequest $request)
+    public function updateProduct(Request $request)
     {
-        $product = Product::with('')->where('id', $request->id)->get();
-        $product->fill($request->only([
+
+//        \DB::enableQueryLog();
+        $product = Product::with('category')->where('id', $request->product_id)->first() ;
+//        dd(\DB::getQueryLog());
+        $product->update($request->only([
             'name',
-            's_name',
-            't_name',
-            'email',
+            'category_id',
+            'user_id',
+            'description',
             'phone_number',
             'location',
-            'description',
-            'avatar',
-            'password',
+            'price',
         ]));
-        $product->save();
+
+        if($request->file('image')) {
+
+            Storage::disk('public')->delete('storage/!/thumbs/products/' .  $product->img);
+
+            $product->update([
+                'img' => $request->product_id . '.jpg',
+            ]);
+            $img = Image::make($request->file('image'));
+            $height = $img->height();
+            $width = $img->width();
+            if($height >= 601) {
+                $img->resize(600, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+            }
+            if($width >= 601) {
+                $img->resize(null, 600, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+            }
+            $img->save($product->img_path);
+        }
 
 
-//        return  redirect()->route('cabinet');
-        return true;
+        return redirect()->route('product.get', $request->product_id);
+//        return true;
     }
 }
