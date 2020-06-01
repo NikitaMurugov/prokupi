@@ -42,7 +42,7 @@
 
 
                         <div class="form-group">
-                            <div class=" col-lg-6 col-md-12 col-sm-12 card-img-left" style="background: url('{{'/storage/!/thumbs/products/' . $product->img}}') center no-repeat;height: 350px; background-size: cover; border-radius: 10px;  border: 1px  solid #6c757d; padding: 0">
+                            <div class=" col-lg-6 col-md-12 col-sm-12 card-img-left" style="background: url('{{'/' . $product->img}}') center no-repeat;height: 350px; background-size: cover; border-radius: 10px;  border: 1px  solid #6c757d; padding: 0">
                                 <span class="card_old-img">Старое изображение</span>
                             </div>
 
@@ -110,82 +110,28 @@
             </form>
                 <div class="card-footer">
                     <small class="text-muted">Объявление было подано: {{ \Carbon\Carbon::parse($product->created_at)->format('d.m.Y') }} в  {{ \Carbon\Carbon::parse($product->created_at)->format('H:i') }}</small>
-
+                    <form method="post" style="display: none;" action="{{  route('delete.product', $product->id) }}">
+                        @csrf
+                        <input type="submit" id="delete-product">
+                    </form>
                     @if(Auth::id() == $product->user_id)
-                        <small class="float-right text-danger font-weight-bold"><i class="far fa-trash-alt"></i> Удалить объявление</small>
+                        <small class="float-right text-danger font-weight-bold delete-product-button" style="cursor: pointer"><i class="far fa-trash-alt"></i> Закрыть объявление</small></a>
                     @endif
                 </div>
         </div>
     </div>
 @endsection
 
-@push('script')
+@push('scripts')
 
     <script>
-        function updateUser(ev) {
-            let data = {};
+        window.onload = function  () {
+            let deleteButton = document.querySelector('.delete-product-button');
 
-            $('#update-user').find('input, textearea, select').each(function () {
-                data[this.name] = $(this).val();
+            deleteButton.addEventListener('click', function (ev) {
+                let formDeleteButton = document.querySelector('#delete-product');
+                formDeleteButton.click();
             });
-            $.ajax({
-                url: '/update/user',
-                type: 'post',
-                data: data,
-                success: function success(result) {
-
-                    document.querySelector('.user-name-text').innerHTML = $('#name').val();
-
-
-                    let modalInfo = document.createElement('div');
-                    modalInfo.classList.add('modal-window');
-                    modalInfo.style.opacity = '0';
-                    modalInfo.style.opacity = '1';
-
-                    let modalBody = document.createElement('div');
-                    modalBody.classList.add('modal-body');
-                    modalBody.classList.add('modal-info');
-
-                    let modalTitle = document.createElement('h3');
-                    modalTitle.classList.add('modal-body__title');
-                    modalTitle.innerHTML = 'Успех!';
-
-                    let modalClose = document.createElement('div');
-                    modalClose.classList.add('modal-close');
-                    let faTimes = document.createElement('i');
-                    faTimes.classList.add('fal');
-                    faTimes.classList.add('fa-times');
-                    faTimes.addEventListener('click',function (ev) {
-                        modalInfo.remove();
-                    });
-                    modalClose.appendChild(faTimes);
-                    let modalHr = document.createElement('hr');
-                    modalHr.classList.add('modal-body__hr');
-
-                    let modalText = document.createElement('span');
-                    modalText.classList.add('modal-body__text');
-                    modalText.innerHTML = 'Вы успешно обновили данные вашей учётной записи';
-
-                    modalBody.appendChild(modalClose);
-                    modalBody.appendChild(modalTitle);
-                    modalBody.appendChild(modalHr);
-                    modalBody.appendChild(modalText);
-
-
-
-
-
-                    modalInfo.appendChild(modalBody);
-                    document.body.appendChild(modalInfo);
-
-                    setTimeout(function () {
-                        modalInfo.style.opacity = '0';
-                        setTimeout(function () {
-                            modalInfo.remove();
-                        }, 200);
-                    }, 2500);
-                }
-            });
-        }
+        };
     </script>
 @endpush

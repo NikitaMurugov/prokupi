@@ -102,7 +102,7 @@ class ProductController extends Controller
     public function submit(ProductRequest $req) {
 
         if (0) {
-            for ($i = 0; $i <= 20;  $i++) {
+            for ($i = 1; $i <= 49;  $i++) {
                 $faker = Factory::create('ru_RU');
 
                 $model = new Product;
@@ -110,11 +110,11 @@ class ProductController extends Controller
                     'name'         => $faker->word,
                     'category_id'  => rand(1,8),
                     'user_id'      => rand(1,11),
-                    'description'  => $faker->text,
+                    'description'  => $faker->realText($maxNbChars = 200, $indexSize = 2),
                     'phone_number' => $faker->phoneNumber,
                     'location'     => $faker->address,
                     'price'        => rand(1000,50000),
-                    'img'          => $faker->image('storage/!/thumbs/products/', 640,480, null, false)
+                    'img'          => 'storage/!/thumbs/products/' . $faker->image('storage/!/thumbs/products/', 640,480, null, false)
                 ]);
                 $model->save();
             }
@@ -135,26 +135,25 @@ class ProductController extends Controller
 
         $model->save();
 
-        if(1){
-            $model->update([
-                'img'          => $model->index . '.jpg',
-            ]);
+        $model->update([
+            'img' => $model->img_url,
+        ]);
 
-            $img = Image::make($req->file('image'));
-            $height = $img->height();
-            $width = $img->width();
-            if($height >= 601) {
-                $img->resize(600, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-            }
-            if($width >= 601) {
-                $img->resize(null, 600, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-            }
-            $img->save($model->img_path);
+        $img = Image::make($req->file('image'));
+        $height = $img->height();
+        $width = $img->width();
+        if($height >= 601) {
+            $img->resize(600, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
         }
+        if($width >= 601) {
+            $img->resize(null, 600, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+        }
+        $img->save($model->img_path);
+
 
         return  redirect()->route('home');
     }

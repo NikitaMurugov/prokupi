@@ -21,9 +21,13 @@
         <div class="content"></div>
         @foreach($products as $product)
             <div class="card ">
-                <div class="card-img-left" style="background: url('{{ '/storage/!/thumbs/products/' . $product->img }}') left; width: 200px;height: 200px; background-size: cover; border-radius: 2px"></div>
+                <a href="{{route('product.get', $product->id)}}">
+                    <div class="card-img-left" style="background: url('{{ '/' . $product->img }}') center; width: 350px;height: 350px; background-size: cover; border-radius: 2px"></div>
+                </a>
                 <div class="card-body">
-                    <h5 class="card-title ">{{ $product->name }}</h5>
+                    <h5 class="card-title">
+                        <a class="text-body" href="{{route('product.get', $product->id)}}">{{ $product->name }}</a>
+                    </h5>
                     <h5 class="card-subtitle text-primary">{{ $product->price }} руб.</h5>
                     <p class="card-text text-black-50">{{ $product->description }}</p>
                 </div>

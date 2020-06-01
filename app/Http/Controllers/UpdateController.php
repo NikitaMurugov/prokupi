@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
-use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\ProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 
 class UpdateController extends Controller
@@ -18,7 +18,7 @@ class UpdateController extends Controller
         $this->middleware('auth');
     }
 
-    public function updateUser(UpdateUserRequest $request)
+    public function updateUser(Request $request)
     {
 //        \DB::enableQueryLog();
         $user = Auth::user();

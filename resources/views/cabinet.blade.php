@@ -102,13 +102,11 @@
         <h3>Выложенные вами объявления <span class="text-muted">({{ $user->products_count }})</span>:</h3><br>
     </div>
     <div class="container-xl container-lg container-md container-sm">
-
-
         <div class="row">
             @foreach($user->products as $product)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <div class="card ">
-                        <div class="card-img-top" style="background: url('{{ '/storage/!/thumbs/products/' . $product->img }}') center; height: 200px; background-size: cover; border-radius: 2px"></div>
+                        <div class="card-img-top" style="background: url('{{ '/' . $product->img }}') center; height: 200px; background-size: cover; border-radius: 2px"></div>
                         <div class="card-body">
                             <h5 class="card-title ">{{ $product->name }}</h5>
                             <h5 class="card-subtitle text-primary">{{ $product->price }} руб.</h5>
@@ -132,7 +130,34 @@
             @endforeach
         </div>
     </div>
+    @if (!empty($del_products))
+        <div class="window window__title window__title_dark window__title_onsearch">
+            <div class="window__title__background_dark"></div>
 
+            <h3>
+                Завершенные объявления:
+            </h3><br>
+        </div>
+        <div class="container-xl container-lg container-md container-sm">
+            <div class="row">
+                @foreach($del_products as $product)
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                        <div class="card ">
+                            <div class="card-img-top" style="background: url('{{ '/' . $product->img }}') center; height: 200px; background-size: cover; border-radius: 2px"></div>
+                            <div class="card-body">
+                                <h5 class="card-title ">{{ $product->name }}</h5>
+                                <h5 class="card-subtitle text-primary">{{ $product->price }} руб.</h5>
+                                <p class="card-text text-black-50" style="height: 100px; overflow: hidden">{{ $product->description }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted"> Завершено: {{ \Carbon\Carbon::parse($product->deleted_at)->format('d.m.Y') }}</small>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endif
 @endsection
 
 @push("scripts")

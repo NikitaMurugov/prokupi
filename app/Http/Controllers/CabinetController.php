@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -21,7 +22,8 @@ class CabinetController extends Controller
     {
         \DB::enableQueryLog();
         $user = User::with('products', 'commentaries')->where('id', Auth::id())->first();
-        return view('cabinet', compact('user'));
+        $del_products  = Product::onlyTrashed()->where('user_id', Auth::id())->get();
+        return view('cabinet', compact('user', 'del_products'));
     }
 
 }

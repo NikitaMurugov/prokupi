@@ -9,7 +9,7 @@
             </a>
             <form action="{{ route('search') }}" class=" form-search">
                 @csrf
-                <input type="text" class="form-control mr-sm-2 search-input" name="search"  value="{{old('search')}}">
+                <input type="text" class="form-control mr-sm-2 search-input" name="search" placeholder="Поиск..." value="{{old('search')}}">
                 <i class="fa fa-search"></i>
                 <input class="search-input-button" type="submit" style="display: none">
             </form>

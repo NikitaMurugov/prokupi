@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use Faker\Factory;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -66,16 +67,16 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         if (0) {
-            $faker = \Faker\Factory::create('ru_RU');
+            $faker = Factory::create('ru_RU');
             for ($i = 0; $i < 10; $i++) {
                 User::create([
-                    'name' => $faker->firstName,
+                    'name' => $faker->firstName('male'),
                     's_name' => $faker->lastName,
-                    't_name' => $faker->monthName,
+                    't_name' => $faker->firstName('male') . 'ович',
                     'email' => $faker->email,
                     'phone_number' => $faker->phoneNumber,
                     'location' => $faker->address,
-                    'description' => $faker->text,
+                    'description' => $faker->realText($maxNbChars = 200, $indexSize = 1),
                     'password' => Hash::make('123123123'),
                 ]);
             }

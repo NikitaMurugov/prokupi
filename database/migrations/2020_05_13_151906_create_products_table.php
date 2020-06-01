@@ -23,7 +23,6 @@ class CreateProductsTable extends Migration
             $table->string("phone_number",17);
             $table->string("location",350);
             $table->text("img");
-            $table->boolean('disabled')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
