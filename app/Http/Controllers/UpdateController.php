@@ -40,7 +40,7 @@ class UpdateController extends Controller
 //        return  redirect()->route('cabinet');
         return true;
     }
-    public function updateProduct(Request $request)
+    public function updateProduct(UpdateProductRequest $request)
     {
 
 //        \DB::enableQueryLog();
