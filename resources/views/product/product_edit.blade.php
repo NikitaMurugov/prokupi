@@ -80,7 +80,7 @@
 
                         <div class="form-group">
                             <label for="phone_number" class="small">Контактный номер: </label>
-                            <input type="text" id="phone_number" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ $product->phone_number }}">
+                            <input type="text" id="phone_number" class="form-control @error('phone_number') is-invalid @enderror bfh-phone" data-format="+7 (ddd) ddd-dddd" name="phone_number" value="{{ $product->phone_number }}">
 
                             @error('phone_number')
                             <span class="invalid-feedback" role="alert">
