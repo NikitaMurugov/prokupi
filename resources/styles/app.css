@@ -142,3 +142,8 @@ span.card_old-img {
     justify-content: space-between;
     align-items: center;
 }
+.card-body__phone {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
