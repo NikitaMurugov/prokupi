@@ -10,6 +10,15 @@
         <div class="header">
             <h2 class="title">Ваш профиль</h2><br><br>
         </div>
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error  }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="row">
             <div class="col-xl-8">
                 <form id="update-user" method="POST" action="javascript:updateUser()">

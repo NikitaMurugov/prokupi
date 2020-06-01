@@ -6,10 +6,12 @@ use App\Models\Product;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\UpdateProductRequest;
 
 class UpdateController extends Controller
 {
-    public function updateUser(Request $request)
+    public function updateUser(UpdateUserRequest $request)
     {
         $user = Auth::user();
         $user->fill($request->only([
@@ -29,7 +31,7 @@ class UpdateController extends Controller
 //        return  redirect()->route('cabinet');
         return true;
     }
-    public function updateProduct(Request $request)
+    public function updateProduct(UpdateProductRequest $request)
     {
         $product = Product::with('')->where('id', $request->id)->get();
         $product->fill($request->only([
