@@ -10,5 +10,6 @@ mix.styles(['resources/styles/default.css',
             'resources/styles/footer.css'
         ], 'public/css/all.css');
 mix.styles('resources/styles/media.css', 'public/css/media.css');
+mix.styles('resources/styles/fa/all.min.css', 'public/css/font-awesome.css');
 mix.styles('resources/styles/bootstrap-formhelpers.min.css', 'public/css/bootstrap-formhelpers.min.css');
 mix.sass('resources/styles/email-input.sass', 'public/css/email-input.css');

@@ -17,9 +17,12 @@ Route::get('/cabinet', 'CabinetController@index')->name('cabinet');
 
 
 Route::get('/products', 'ProductController@search')->name('search');
-Route::get('/product/add', 'ProductController@add')->name('product_add');
-Route::post('/product/submit', 'ProductController@submit')->name('product_submit');
-Route::get('/products/{product_id}', 'ProductController@get')->name('product_get');
-//Route::get('/products/', 'ProductController@search')->name('search');
+Route::get('/product/add', 'ProductController@add')->name('product.add');
+Route::post('/product/submit', 'ProductController@submit')->name('product.submit');
+Route::get('/product/edit/{product_id}', 'ProductController@edit')->name('product.edit');
+Route::get('/products/{product_id}', 'ProductController@get')->name('product.get');
 
-Route::post('/update/user', 'UpdateController@update_user')->name('update_user');
+Route::post('/update/user', 'UpdateController@updateUser')->name('update.user');
+Route::post('/update/product', 'UpdateController@updateProduct')->name('update.product');
+
+Route::post('/delete/product', 'DeleteController@deleteProduct')->name('delete.product');

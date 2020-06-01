@@ -26,9 +26,11 @@ class HomeController extends Controller
     public function index()
     {
 
+//        \DB::enableQueryLog();
         $categories = Category::all();
         $products = Product::with('category')->orderByRaw('created_at DESC')->limit(40)->get();
-//        $categories = Category::get();
+//        dd(\DB::getQueryLog());
+        //        $categories = Category::get();
 //        foreach ($categories as $category) {
 //            dd($category->products);
 //        }

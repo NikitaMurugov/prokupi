@@ -13,6 +13,9 @@ class Product extends Model
     protected $with = [
     ];
 
+    protected $withCount = [
+        'commentaries',
+    ];
 
     protected $fillable = [
         'name', 'category_id','user_id', 'price', 'description', 'phone_number',  'location', 'img',

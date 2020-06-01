@@ -7,11 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Commentary extends Model
 {
-    protected $table = 'categories';
-
-    protected $withCount = [
-        'product'
-    ];
+    protected $table = 'commentaries';
 
     protected $fillable = [
         'product_id','sender_id','message',
@@ -21,6 +17,7 @@ class Commentary extends Model
     function product() {
         return $this->belongsTo(Product::class, 'product_id');
     }
+
     function user() {
         return $this->belongsTo(User::class, 'sender_id');
     }

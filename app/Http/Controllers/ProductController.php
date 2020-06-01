@@ -37,10 +37,26 @@ class ProductController extends Controller
         return view('product.product', compact('product'));
     }
 
+    public function edit(Request $req)
+    {
+
+//        \DB::enableQueryLog();
+        $product = Product::with('category', 'user')->where('id',(int)$req->route('product_id'))->where('user_id', Auth::id())->first();
+//        dd(\DB::getQueryLog());
+//        dd($product);
+        if ($product !== null) {
+            $categories = Category::with('products')->get();
+            return view('product.product_edit', compact('product', 'categories'));
+        }  else {
+            return back();
+        }
+    }
+
     public function search(Request $request) {
-//        $cat      = Category::with('products')->get();
+        $categories      = Category::with('products')->get();
         $search   = $request->input('search');
         $cat   = $request->input('category_id');
+        $category      = Category::with('products')->where('id',(int)$cat)->first();
         if (isset($search)) {
             $products = Product::
 
@@ -58,7 +74,7 @@ class ProductController extends Controller
             })
                 ->orderByRaw('created_at DESC')->get();
             $prod_count = $products->count();
-            return view('product.products', compact('products', 'prod_count', 'search'));
+            return view('product.products', compact('products', 'categories', 'category', 'prod_count', 'cat', 'search'));
         } elseif ($cat) {
             $products = Product::
 
@@ -75,8 +91,8 @@ class ProductController extends Controller
 
             })
                 ->orderByRaw('created_at DESC')->get();
-            $prod_count = $products->count();
-            return view('product.products', compact('products', 'prod_count', 'search'));
+            $prod_count      = $products->count();
+            return view('product.products', compact('products', 'categories', 'category', 'prod_count', 'cat', 'search'));
         } else {
             return back();
         }
@@ -105,6 +121,7 @@ class ProductController extends Controller
             }
         }
         $model = new Product;
+
         $model->fill([
             'name'         => $req->input('name'),
             'category_id'  => $req->input('category_id'),
@@ -122,6 +139,7 @@ class ProductController extends Controller
             $model->update([
                 'img'          => $model->index . '.jpg',
             ]);
+
             $img = Image::make($req->file('image'));
             $height = $img->height();
             $width = $img->width();

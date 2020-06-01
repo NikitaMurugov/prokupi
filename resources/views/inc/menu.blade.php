@@ -19,7 +19,7 @@
             @guest
                 <a class='btn btn-dark' href="{{ route('login') }}">Подать объявление</a>
             @else
-                <a class='btn btn-dark' href="{{ route('product_add') }}">Подать объявление</a>
+                <a class='btn btn-dark' href="{{ route('product.add') }}">Подать объявление</a>
             @endguest
 
             @if(request()->path() !== '/')

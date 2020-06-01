@@ -75,6 +75,42 @@
             <div class="content col-4"></div>
         </div>
     </div>
+    <div class="window window__title window__title_onsearch">
+        <div class="window__title__background"></div>
+        <h3>Выложенные вами объявления <span class="text-muted">({{ $user->products_count }})</span>:</h3><br>
+    </div>
+    <div class="container-xl container-lg container-md container-sm">
+
+
+        <div class="row">
+            @foreach($user->products as $product)
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="card ">
+                        <div class="card-img-top" style="background: url('{{ '/storage/!/thumbs/products/' . $product->img }}') center; height: 200px; background-size: cover; border-radius: 2px"></div>
+                        <div class="card-body">
+                            <h5 class="card-title ">{{ $product->name }}</h5>
+                            <h5 class="card-subtitle text-primary">{{ $product->price }} руб.</h5>
+                            <p class="card-text text-black-50" style="height: 100px; overflow: hidden">{{ $product->description }}</p>
+                        </div>
+                        <div class="card-body">
+                            <form method="get" action="{{ route('search') }}">
+                                @csrf
+                                <a href="{{asset('product/edit/' . $product->id)}}" class="text-muted">Редактировать <i class="fal fa-pencil-alt text-muted" style="width: 25px;height: 25px; color: #000;"></i></a>
+                                <br>
+                                <input type="text" name="category_id" value="{{ $product->category->id }}" style="display: none" disabled>
+                                <input type="submit" class="btn btn-sm btn-outline-info" value="{{ $product->category->name }}">
+                            </form>
+
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted"> Дата: {{ \Carbon\Carbon::parse($product->created_at)->format('d.m.Y') }}</small>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
 @endsection
 
 @push("scripts")
@@ -108,6 +144,15 @@
                     modalTitle.classList.add('modal-body__title');
                     modalTitle.innerHTML = 'Успех!';
 
+                    let modalClose = document.createElement('div');
+                    modalClose.classList.add('modal-close');
+                    let faTimes = document.createElement('i');
+                    faTimes.classList.add('fal');
+                    faTimes.classList.add('fa-times');
+                    faTimes.addEventListener('click',function (ev) {
+                        modalInfo.remove();
+                    });
+                    modalClose.appendChild(faTimes);
                     let modalHr = document.createElement('hr');
                     modalHr.classList.add('modal-body__hr');
 
@@ -115,24 +160,16 @@
                     modalText.classList.add('modal-body__text');
                     modalText.innerHTML = 'Вы успешно обновили данные вашей учётной записи';
 
+                    modalBody.appendChild(modalClose);
                     modalBody.appendChild(modalTitle);
                     modalBody.appendChild(modalHr);
                     modalBody.appendChild(modalText);
 
-                    let modalClose = document.createElement('div');
-                    modalClose.classList.add('modal-close');
-                    let faTimes = document.createElement('i');
-                    faTimes.classList.add('fas');
-                    faTimes.classList.add('fa-times');
-                    faTimes.addEventListener('click',function (ev) {
-                        modalInfo.remove();
-                    });
-                    modalClose.appendChild(faTimes);
+
 
 
 
                     modalInfo.appendChild(modalBody);
-                    modalInfo.appendChild(modalClose);
                     document.body.appendChild(modalInfo);
 
                     setTimeout(function () {
@@ -140,7 +177,7 @@
                         setTimeout(function () {
                             modalInfo.remove();
                         }, 200);
-                    }, 1800);
+                    }, 2500);
                 }
             });
         }
