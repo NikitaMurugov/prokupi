@@ -25,10 +25,10 @@ class UpdateProductRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            's_name' => 'required',
-            'email' => 'required|email',
+            'category_id' => 'required',
+            'description' => 'required',
             'phone_number' => 'required',
-            'location' => 'required',
+            'price' => 'required',
         ];
     }
 
@@ -36,11 +36,10 @@ class UpdateProductRequest extends FormRequest
     {
         return [
             'name.required' => 'Изменение поля Имя является обязательным',
-            's_name.required' => 'Изменение поля Фамилия является обязательным',
-            'email.required' => 'Изменение поля Email является обязательным',
-            'email.email' => 'Поле Email должно сожержать @',
-            'phone_number.required' => 'Изменение поля Номер телефона является обязательным',
-            'location.required' => 'Изменение поля Адрес является обязательным',
+            'category_id.required' => 'Изменение Категории товара является обязательным',
+            'description.required' => 'Изменение Описания является обязательным',
+            'phone_number.required' => 'Изменение Номера телефона является обязательным',
+            'price.required' => 'Изменение Цены является обязательным',
         ];
     }
 }
