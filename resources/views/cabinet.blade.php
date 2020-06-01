@@ -146,7 +146,7 @@
             let data = {};
             let inputs = {};
             let errors = {};
-            errors.clean();
+
             $('#update-user').find('input, textearea').each(function () {
                 inputs[this.name] = $(this);
                 data[this.name] = $(this).val();
@@ -164,9 +164,8 @@
             if (data['phone_number'] === '') {
                 errors.phone_number = 'Поле "номер телефона" является обязательным';
             }
-            if (data['phone_number'].split().length !== 17) {
+            if (data['phone_number'].split('').length !== 17) {
                 errors.phone_number = 'Поле "номер телефона" не полностью  заполнено';
-
             }
             if (data['location'] === '') {
                 errors.location = 'Поле "адресс" является обязательным';
@@ -175,10 +174,14 @@
             if (Object.keys(errors).length === 0) {
 
                 for(let input in inputs) {
-                    inputs[input].classList.remove('is-invalid');
-                    let messageBlock = inputs[input].parentNode.querySelector("." + input + "-invalid-feedback");
-                    messageBlock.style.display = 'none';
-                    messageBlock.childNodes[0].val('');
+                    if (inputs[input][0].classList.item('is-invalid')) {
+                        inputs[input][0].classList.remove('is-invalid');
+                    }
+                    let messageBlock = inputs[input][0].parentNode.querySelector("." + input + "-invalid-feedback");
+                    if (messageBlock) {
+                        messageBlock.style.display = 'none';
+                        messageBlock.childNodes[1].innerText = '';
+                    }
                 }
                 $.ajax({
                     url: '/update/user',
@@ -239,11 +242,20 @@
                     }
                 });
             } else {
+                console.log(Object.keys(errors).length );
+                for(let input in inputs) {
+                    if (inputs[input][0].classList.item('is-invalid')) {
+                        inputs[input][0].classList.remove('is-invalid');
+                    }
+                    let messageBlock = inputs[input][0].parentNode.querySelector("." + input + "-invalid-feedback");
+                    if (messageBlock) {
+                        messageBlock.style.display = 'none';
+                        messageBlock.childNodes[1].innerText = '';
+                    }
+                }
                 for(let error in errors) {
-                    console.log(inputs[error][0]);
                     inputs[error][0].classList.add('is-invalid');
                     let messageBlock = inputs[error][0].parentNode.querySelector("." + error + "-invalid-feedback");
-                    console.log(messageBlock.childNodes[1]);
                     messageBlock.style.display = 'block';
                     messageBlock.childNodes[1].innerText = errors[error];
                 }
