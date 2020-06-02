@@ -54,9 +54,10 @@
                                id="phone_number"
                                class="form-control form-control-plaintext  col-md-8 col-sm-12"
                                value="{{ $product->phone_number }}">
-                        <i class="fal fa-eye-slash col-md-2 col-sm-12 eye"></i>
+                        <i class="fal fa-eye-slash col-md-2 col-sm-12 eye" style="cursor: pointer"></i>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <div class="row">
                         <span class="text-muted small">Контактное лицо: </span>
@@ -64,6 +65,16 @@
                     <div class="row text-primary"><a href="#">{{ $product->user->name }} {{ $product->user->s_name }}</a></div>
                 </div>
             </div>
+            </div>
+            <div class="card-body" style="padding: 30px">
+                <div class="form-group">
+                    <div class="row">
+                        <span class="text-muted small">Местположение: </span>
+                    </div>
+                    <div class="row">
+                        {{ $product->location }}
+                    </div>
+                </div>
             </div>
             <div class="card-footer">
                 <div class="row">

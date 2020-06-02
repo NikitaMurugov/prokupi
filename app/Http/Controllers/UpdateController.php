@@ -61,7 +61,7 @@ class UpdateController extends Controller
             Storage::disk('public')->delete('storage/!/thumbs/products/' .  $product->img);
 
             $product->update([
-                'img' => $request->product_id . '.jpg',
+                'img' => $product->img_url,
             ]);
             $img = Image::make($request->file('image'));
             $height = $img->height();

@@ -351,8 +351,13 @@ span.card_old-img {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-
-
+}
+.modal-danger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 250px;
 }
 
 .modal-body__title {

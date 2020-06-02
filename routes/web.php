@@ -26,3 +26,4 @@ Route::post('/update/user', 'UpdateController@updateUser')->name('update.user');
 Route::post('/update/product/{product_id}', 'UpdateController@updateProduct')->name('update.product');
 
 Route::post('/delete/product/{product_id}', 'DeleteController@deleteProduct')->name('delete.product');
+Route::post('/delete/user', 'DeleteController@deleteUser')->name('delete.user');

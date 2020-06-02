@@ -155,6 +155,6 @@ class ProductController extends Controller
         $img->save($model->img_path);
 
 
-        return  redirect()->route('home');
+        return  redirect()->route('product.get', $model->id);
     }
 }

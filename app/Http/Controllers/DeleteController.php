@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DeleteController extends Controller
 {
@@ -15,9 +17,20 @@ class DeleteController extends Controller
     function deleteProduct(Request $request) {
 
         // функционал удаления объявления
-        $product =  Product::where('id', $request->product_id)->delete();
+        Product::where('id', $request->product_id)->delete();
 
         return redirect()->route('cabinet');
+    }
+
+    function deleteUser(Request $request) {
+
+        // функционал удаления пользователя
+
+        User::where('id', Auth::id())->delete();
+
+        Auth::guard()->logout();
+
+        return redirect()->route('home');
     }
 
 }

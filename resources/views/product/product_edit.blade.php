@@ -42,7 +42,13 @@
 
 
                         <div class="form-group">
-                            <div class=" col-lg-6 col-md-12 col-sm-12 card-img-left" style="background: url('{{'/' . $product->img}}') center no-repeat;height: 350px; background-size: cover; border-radius: 10px;  border: 1px  solid #6c757d; padding: 0">
+
+                            <div class=" col-lg-6 col-md-12 col-sm-12 card-img-left"
+                                 style="background: url('{{'/' . $product->img}}') center no-repeat;
+                                     height: 350px;
+                                     background-size: cover;
+                                     border-radius: 10px;
+                                     border: 1px  solid #6c757d; padding: 0">
                                 <span class="card_old-img">Старое изображение</span>
                             </div>
 
@@ -53,6 +59,16 @@
                             <label for="description"  class="small">Описание объявления:</label>
                             <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror"  cols="30" rows="10">{{$product->description}}</textarea>
 
+                            @error('description')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="location"  class="small">Местоположение:</label>
+                            <input name="location" id="location" class="form-control @error('description') is-invalid @enderror"  value="{{$product->location}}">
                             @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -127,11 +143,62 @@
     <script>
         window.onload = function  () {
             let deleteButton = document.querySelector('.delete-product-button');
+            let modalAccept;
 
             deleteButton.addEventListener('click', function (ev) {
-                let formDeleteButton = document.querySelector('#delete-product');
-                formDeleteButton.click();
+
+                let modalInfo = document.createElement('div');
+                modalInfo.classList.add('modal-window');
+                modalInfo.style.opacity = '0';
+                modalInfo.style.opacity = '1';
+
+                let modalBody = document.createElement('div');
+                modalBody.classList.add('modal-body');
+                modalBody.classList.add('modal-danger');
+                let blockTitle = document.createElement('div');
+                let modalTitle = document.createElement('h3');
+                modalTitle.classList.add('modal-body__title');
+                modalTitle.innerHTML = 'Внимание!';
+
+                let modalClose = document.createElement('div');
+                modalClose.classList.add('modal-close');
+                let faTimes = document.createElement('i');
+                faTimes.classList.add('fal');
+                faTimes.classList.add('fa-times');
+                faTimes.addEventListener('click',function (ev) {
+                    modalInfo.remove();
+                });
+
+                modalClose.appendChild(faTimes);
+                let modalHr = document.createElement('hr');
+                modalHr.classList.add('modal-body__hr');
+
+                blockTitle.appendChild(modalTitle);
+                blockTitle.appendChild(modalHr);
+
+                let modalText = document.createElement('span');
+                modalText.classList.add('modal-body__text');
+                modalText.innerHTML = 'Вы уверены  в том что хотите закрыть объявление?';
+
+                let modalSubmit = document.createElement('div');
+                modalSubmit.classList.add('modal-body__button');
+                modalSubmit.classList.add('btn');
+                modalSubmit.classList.add('btn-danger');
+                modalSubmit.innerHTML = 'Закрыть объявление';
+                modalSubmit.addEventListener('click', function () {
+                    let formDeleteButton = document.querySelector('#delete-product');
+                    formDeleteButton.click();
+                });
+                modalBody.appendChild(modalClose);
+                modalBody.appendChild(blockTitle);
+                modalBody.appendChild(modalText);
+                modalBody.appendChild(modalSubmit);
+
+
+                modalInfo.appendChild(modalBody);
+                document.body.appendChild(modalInfo);
             });
+
         };
     </script>
 @endpush

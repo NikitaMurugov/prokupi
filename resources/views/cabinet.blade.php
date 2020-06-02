@@ -46,13 +46,12 @@
                             <div class="form-group">
                                 <label for="t_name">Отчество</label>
                                 <input id="t_name" type="text" class="form-control" placeholder="{{ __('Отчество') }}" value="{{ $user->t_name }}" name="t_name">
-
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label for="phone_number">Номер  телефона</label>
                                 <input id="phone_number"  type="text" class="form-control @error('phone_number') is-invalid @enderror bfh-phone" data-format="+7 (ddd) ddd-dddd" value="{{ $user->phone_number }}" name="phone_number">
@@ -61,7 +60,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label for="email">E-mail</label>
                                 <input id="email"  type="text" class="form-control @error('email') is-invalid @enderror" value="{{ $user->email }}"  name="email">
@@ -76,7 +75,10 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="location">Адресс</label>
-                                <input id="location" type="text" class="form-control" placeholder="Home Address" value="{{ $user->location }}"  name="location">
+                                <input id="location" type="text" class="form-control" placeholder="Адресс" value="{{ $user->location }}"  name="location">
+                                <span style="display: none" class="invalid-feedback location-invalid-feedback" role="alert">
+                                    <strong></strong>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -86,50 +88,68 @@
                             <div class="form-group">
                                 <label for="description">Обо мне</label>
                                 <textarea id="description" rows="5" class="form-control" placeholder="Обо мне" name="description">{{ $user->description }}</textarea>
+                                <span style="display: none" class="invalid-feedback description-invalid-feedback" role="alert">
+                                    <strong></strong>
+                                </span>
                             </div>
                         </div>
                     </div>
-
-                    <button type="submit" class="btn btn-info btn-fill pull-right button-submitform">Обновить пользователя</button>
-
-                </form>
-            </div>
-            <div class="content col-4"></div>
-        </div>
-    </div>
-    <div class="window window__title window__title_onsearch">
-        <div class="window__title__background"></div>
-        <h3>Выложенные вами объявления <span class="text-muted">({{ $user->products_count }})</span>:</h3><br>
-    </div>
-    <div class="container-xl container-lg container-md container-sm">
-        <div class="row">
-            @foreach($user->products as $product)
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                    <div class="card ">
-                        <div class="card-img-top" style="background: url('{{ '/' . $product->img }}') center; height: 200px; background-size: cover; border-radius: 2px"></div>
-                        <div class="card-body">
-                            <h5 class="card-title ">{{ $product->name }}</h5>
-                            <h5 class="card-subtitle text-primary">{{ $product->price }} руб.</h5>
-                            <p class="card-text text-black-50" style="height: 100px; overflow: hidden">{{ $product->description }}</p>
+                    <div class="row ">
+                        <div class="col-md-6 col-sm-12">
+                            <button type="submit" class="btn btn-info btn-fill pull-right button-submitform float-left">Обновить пользователя</button>
                         </div>
-                        <div class="card-body">
-                            <form method="get" action="{{ route('search') }}">
-                                @csrf
-                                <a href="{{asset('product/edit/' . $product->id)}}" class="text-muted">Редактировать <i class="fal fa-pencil-alt text-muted" style="width: 25px;height: 25px; color: #000;"></i></a>
-                                <br>
-                                <input type="text" name="category_id" value="{{ $product->category->id }}" style="display: none" disabled>
-                                <input type="submit" class="btn btn-sm btn-outline-info" value="{{ $product->category->name }}">
-                            </form>
-
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted"> Дата: {{ \Carbon\Carbon::parse($product->created_at)->format('d.m.Y') }}</small>
+                        <div class="col-md-6 col-sm-12">
+                            <div type="submit" class="btn btn-danger btn-fill button-deleteuser float-right">Отключить пользователя</div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+
+                </form>
+                <form style="display: none" action="{{ route('delete.user') }}" method="post" id="delete-user">
+                    @csrf
+                </form>
+            </div>
+            <div class="content col-4">
+
+            </div>
         </div>
     </div>
+    @if($user->products_count !== 0)
+        <div class="window window__title window__title_onsearch">
+            <div class="window__title__background"></div>
+            <h3>Выложенные вами объявления <span class="text-muted">({{ $user->products_count }})</span>:</h3><br>
+        </div>
+
+        <div class="container-xl container-lg container-md container-sm">
+            <div class="row">
+                @foreach($user->products as $product)
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                        <div class="card ">
+                            <div class="card-img-top" style="background: url('{{ '/' . $product->img }}') center; height: 200px; background-size: cover; border-radius: 2px"></div>
+                            <div class="card-body">
+                                <h5 class="card-title ">{{ $product->name }}</h5>
+                                <h5 class="card-subtitle text-primary">{{ $product->price }} руб.</h5>
+                                <p class="card-text text-black-50" style="height: 100px; overflow: hidden">{{ $product->description }}</p>
+                            </div>
+                            <div class="card-body">
+
+                                <form method="get" action="{{ route('search') }}">
+                                    @csrf
+                                    <a href="{{asset('product/edit/' . $product->id)}}" class="text-muted">Редактировать <i class="fal fa-pencil-alt text-muted" style="width: 25px;height: 25px; color: #000;"></i></a>
+                                    <br>
+                                    <input type="text" name="category_id" value="{{ $product->category->id }}" style="display: none" disabled>
+                                    <input type="submit" class="btn btn-sm btn-outline-info" value="{{ $product->category->name }}">
+                                </form>
+
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted"> Дата: {{ \Carbon\Carbon::parse($product->created_at)->format('d.m.Y') }}</small>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endif
     @if (!empty($del_products))
         <div class="window window__title window__title_dark window__title_onsearch">
             <div class="window__title__background_dark"></div>
@@ -162,10 +182,6 @@
 
 @push("scripts")
     <script>
-
-        function getAndValidateUpdateUser(data, errors) {
-
-        }
 
         function updateUser(ev) {
             let data = {};
@@ -251,10 +267,6 @@
                         modalBody.appendChild(modalHr);
                         modalBody.appendChild(modalText);
 
-
-
-
-
                         modalInfo.appendChild(modalBody);
                         document.body.appendChild(modalInfo);
 
@@ -267,7 +279,6 @@
                     }
                 });
             } else {
-                console.log(Object.keys(errors).length );
                 for(let input in inputs) {
                     if (inputs[input][0].classList.item('is-invalid')) {
                         inputs[input][0].classList.remove('is-invalid');
@@ -286,6 +297,64 @@
                 }
             }
         }
+
+        window.onload = function  () {
+            let deleteButton = document.querySelector('.button-deleteuser');
+
+            deleteButton.addEventListener('click', function (ev) {
+
+                let modalInfo = document.createElement('div');
+                modalInfo.classList.add('modal-window');
+                modalInfo.style.opacity = '0';
+                modalInfo.style.opacity = '1';
+
+                let modalBody = document.createElement('div');
+                modalBody.classList.add('modal-body');
+                modalBody.classList.add('modal-danger');
+                let blockTitle = document.createElement('div');
+                let modalTitle = document.createElement('h3');
+                modalTitle.classList.add('modal-body__title');
+                modalTitle.innerHTML = 'Внимание!';
+
+                let modalClose = document.createElement('div');
+                modalClose.classList.add('modal-close');
+                let faTimes = document.createElement('i');
+                faTimes.classList.add('fal');
+                faTimes.classList.add('fa-times');
+                faTimes.addEventListener('click',function (ev) {
+                    modalInfo.remove();
+                });
+
+                modalClose.appendChild(faTimes);
+                let modalHr = document.createElement('hr');
+                modalHr.classList.add('modal-body__hr');
+
+                blockTitle.appendChild(modalTitle);
+                blockTitle.appendChild(modalHr);
+
+                let modalText = document.createElement('span');
+                modalText.classList.add('modal-body__text');
+                modalText.innerHTML = 'Вы уверены что хотите удалить пользователя?';
+
+                let modalSubmit = document.createElement('div');
+                modalSubmit.classList.add('modal-body__button');
+                modalSubmit.classList.add('btn');
+                modalSubmit.classList.add('btn-danger');
+                modalSubmit.innerHTML = 'Отключить пользователя';
+                modalSubmit.addEventListener('click', function () {
+                    document.querySelector("#delete-user").submit();
+                });
+                modalBody.appendChild(modalClose);
+                modalBody.appendChild(blockTitle);
+                modalBody.appendChild(modalText);
+                modalBody.appendChild(modalSubmit);
+
+
+                modalInfo.appendChild(modalBody);
+                document.body.appendChild(modalInfo);
+            });
+
+        };
     </script>
 @endpush
 
