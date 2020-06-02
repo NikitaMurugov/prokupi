@@ -3,11 +3,12 @@
 @section('title')Объявление "{{$product->name}}"@endsection
 
 @section('content')
+
     <div class="window window__title window__title_onsearch">
         <div class="window__title__background"></div>
         <h3>Обьявление  пользователя: {{ $product->user->name }} {{ $product->user->s_name }} </h3><br>
     </div>
-{{--    {{$product}}--}}
+
 
     <div class="container-xl container-lg container-md container-sm">
 

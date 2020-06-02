@@ -31,10 +31,14 @@ class ProductController extends Controller
 
 //        \DB::enableQueryLog();
         $product = Product::with('category', 'user')->where('id',(int)$req->route('product_id'))->first();
-//        dd(\DB::getQueryLog());
+        if (!$product == null) {
+            return view('product.product', compact('product'));
+        } else {
+            return back();
+        }
+        //        dd(\DB::getQueryLog());
 //        dd($product);
 
-        return view('product.product', compact('product'));
     }
 
     public function edit(Request $req)

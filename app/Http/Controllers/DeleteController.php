@@ -28,6 +28,12 @@ class DeleteController extends Controller
 
         User::where('id', Auth::id())->delete();
 
+        Product::where('user_id', Auth::id())->delete();
+//        foreach ($products as $product) {
+//            $product->delete();
+//        }
+
+
         Auth::guard()->logout();
 
         return redirect()->route('home');
