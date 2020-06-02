@@ -14,66 +14,72 @@
 
         <div class="card">
             <div class="card-header product-card__title">  <h4> {{$product->name}}</h4> <h4>Цена: {{$product->price}} <span class="">₽</span></h4></div>
-            <div class="row">
-            <div class="card-body col-8" style="padding: 30px">
-                <div >
-                    <div class="card-img-left" style="background: url('{{'/' . $product->img}}') center no-repeat;height: 450px; background-size: cover; border-radius: 10px;  border: 1px  solid #6c757d;  margin-bottom: 25px" ></div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8 col-sm-12" >
+                        <div class="">
+                            <div class="card-img-left" style="background: url('{{'/' . $product->img}}') center no-repeat;height: 450px; background-size: cover; border-radius: 10px;  border: 1px  solid #6c757d;  margin-bottom: 25px" ></div>
 
-                    <div class="card-title">
-                        <h3> {{$product->name}}</h3>
+                            <div class="card-title">
+                                <h3> {{$product->name}}</h3>
+                            </div>
+                            <p class="card-text">
+                                {{$product->description}}
+                            </p>
+                        </div>
                     </div>
-                    <p class="card-text">
-                        {{$product->description}}
-                    </p>
-                </div>
-            </div>
-            <div class="card-body col-4"  style="padding: 30px">
-                <div class="form-group">
-                    <div class="row">
-                        <span class="text-muted small">Цена товара: </span>
-                    </div>
-                    <div class="row">
-                        <input type="text" id="price" class="form-control form-control-plaintext col-md-8 col-sm-12" value="{{ $product->price }} ₽">
+                    <div class="col-md-4 col-sm-12" >
+                        <div class="">
+                            <div class="card-text">
+                                <span class="text-muted small">Цена товара: </span>
+                            </div>
+                            <div class="card-text">
+                                <input type="text" id="price" class="form-control form-control-plaintext col-md-8 col-sm-12" value="{{ $product->price }} ₽">
 
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="row">
-                        <span class="text-muted small">Категория товара: </span>
-                    </div>
-                    <div class="row">
-                        <a href="{{route('search', 'category_id='. $product->category_id)}}">{{ $product->category->name }}</a>
-                    </div>
-                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="">
+                            <div class="card-text">
+                                <span class="text-muted small">Категория товара: </span>
+                            </div>
+                            <div class="card-text">
+                                <a href="{{route('search', 'category_id='. $product->category_id)}}">{{ $product->category->name }}</a>
+                            </div>
+                        </div>
+                        <br>
 
-                <div class="form-group">
-                    <div class="row">
-                        <label for="phone_number" class="text-muted small">Контактный телефон:  </label>
-                    </div>
-                    <div class="row align-items-center">
-                        <input type="text"
-                               id="phone_number"
-                               class="form-control form-control-plaintext  col-md-8 col-sm-12"
-                               value="{{ $product->phone_number }}">
-                        <i class="fal fa-eye-slash col-md-2 col-sm-12 eye" style="cursor: pointer"></i>
-                    </div>
-                </div>
+                        <div class="">
+                            <div class="card-text">
+                                <label for="phone_number" class="text-muted small">Контактный телефон:
+                                    <i class="fal fa-eye-slash eye" style="cursor: pointer"></i>
+                                </label>
+                            </div>
+                            <div class="card-text">
+                                <input type="text"
+                                       id="phone_number"
+                                       class="form-control form-control-plaintext"
+                                       value="{{ $product->phone_number }}">
 
-                <div class="form-group">
-                    <div class="row">
-                        <span class="text-muted small">Контактное лицо: </span>
-                    </div>
-                    <div class="row text-primary"><a href="#">{{ $product->user->name }} {{ $product->user->s_name }}</a></div>
-                </div>
-            </div>
-            </div>
-            <div class="card-body" style="padding: 30px">
-                <div class="form-group">
-                    <div class="row">
-                        <span class="text-muted small">Местположение: </span>
-                    </div>
-                    <div class="row">
-                        {{ $product->location }}
+                            </div>
+                        </div>
+                        <br>
+
+                        <div>
+                            <div class="card-text">
+                                <span class="text-muted small">Контактное лицо: </span>
+                            </div>
+                            <div class="card-text text-primary"><a href="#">{{ $product->user->name }} {{ $product->user->s_name }}</a></div>
+                        </div>
+                        <br>
+                        <div>
+                            <div class="card-text">
+                                <span class="text-muted small">Местположение: </span>
+                            </div>
+                            <div class="card-text">
+                                {{ $product->location }}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

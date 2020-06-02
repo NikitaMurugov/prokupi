@@ -295,16 +295,63 @@ a {
 }
 
 span.card_old-img {
+    position: absolute;
+    bottom: 0;
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #e0e0e0;
-    border-radius: 10px;
+    color: #f4f4f4;
+    border-radius: 0 0 10px 10px;
     width: 100%;
     height: 50px;
-    background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1));
+    background: rgba(39, 39, 39, 0.5);
 }
+
+.file-preview-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    font-size: 16px;
+    text-align: center;
+    color: #495057;
+    cursor: pointer;
+    transition: 500ms;
+    margin-bottom: 10px;
+    height: 350px;
+    border-radius: 10px;
+    border: 1px  solid #ced4da; padding: 0
+}
+.file-preview-image .fa-cloud-upload{
+    top: 50%;
+}
+
+.file-preview-image-reupload {
+    position: absolute;
+    transition: 300ms;
+    border-radius: 10px;
+    height: 350px;
+    width: 100%;
+    z-index: 5;
+}
+
+
+#preview-uploaded-image {
+    background-size: contain;
+    font-size: 16px;
+    border-top: 1px solid #ced4da;
+    border-bottom: 1px solid #ced4da;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #495057;
+    cursor: pointer;
+    size: ledger;
+}
+
 .card-img-left  {
     display: flex;
     /*justify-content: flex-end;*/
@@ -320,6 +367,65 @@ span.card_old-img {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+}
+
+#uploaded-image {
+    background-size: contain;
+    font-size: 16px;
+    height: 150px;
+    border-top: 1px solid #ced4da;
+    border-bottom: 1px solid #ced4da;
+    border-radius: .25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #495057;
+    cursor: pointer;
+    size: ledger;
+}
+.uploaded-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    font-size: 16px;
+    height: 150px;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    text-align: center;
+    color: #495057;
+    cursor: pointer;
+    transition: 500ms;
+    margin-bottom: 10px;
+}
+.reupload-image {
+    position: absolute;
+    transition: 300ms;
+    border-radius: .25rem;
+    height: 150px;
+    width: 90%;
+    z-index: 5;
+    box-sizing: border-box;
+}
+
+.fa-cloud-upload {
+    transition: 300ms;
+    font-size: 30px;
+    position: absolute;
+    color: #adadad;
+    z-index: 10;
+}
+.file-is-uploaded {
+    opacity: 0;
+}
+
+.file-is-reupload {
+    opacity: 1;
+}
+
+.success-upload {
+    color: #CD75F6;
 }
 
 .modal-window {

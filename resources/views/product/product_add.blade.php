@@ -61,10 +61,23 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Фотография') }}</label>
+                                <label for="image" class="col-md-4 col-form-label text-md-right ">{{ __('Загрузите изображение') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="image" type="file" class="form-control-file @error('image') is-invalid @enderror" name="image" accept="image/jpeg, image/png">
+                                    <div class='uploaded-image'>
+                                        <i class="fal fa-cloud-upload"></i>
+                                        <img src="" id='uploaded-image' alt="" >
+                                        <div class="reupload-image"></div>
+                                    </div>
+                                    <div class="text upload-image" style="cursor: pointer"> Загрузка изображения </div>
+
+                                    <input style="display: none"
+                                           type="file"
+                                           class="form-control-file"
+                                           id="image"
+                                           name="image"
+                                           accept="image/jpeg, image/png">
+
                                     <small class="form-text text-muted">Это изображение должно быть привлекательным и приятным для пользователей.</small>
 
                                     @error('image')
@@ -134,3 +147,70 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+
+
+        window.onload = function () {
+
+
+            document.querySelector('#uploaded-image').addEventListener('click',function() {
+                console.log(1);
+                document.querySelector('#image').click();
+            });
+            document.querySelector('.reupload-image').addEventListener('click',function() {
+                console.log(3);
+                document.querySelector('#image').click();
+            });
+            document.querySelector('.fa-cloud-upload').addEventListener('click',function() {
+                console.log(3);
+                document.querySelector('#image').click();
+            });
+
+            document.querySelector('.reupload-image').addEventListener('mousemove', function () {
+                document.querySelector('.fa-cloud-upload').classList.replace('file-is-uploaded', 'file-is-reupload' );
+                document.querySelector('.reupload-image').style.background = 'rgba(0,0,0,0.5)';
+
+            });
+            document.querySelector('.reupload-image').addEventListener('mouseleave', function () {
+                document.querySelector('.fa-cloud-upload').classList.replace('file-is-reupload', 'file-is-uploaded' );
+                document.querySelector('.reupload-image').style.background = '';
+
+            });
+            document.querySelector('.reupload-image').addEventListener('mousemove', function () {
+                document.querySelector('.fa-cloud-upload').style.color = '#f0f0f0';
+                document.querySelector('.fa-cloud-upload').classList.replace('file-is-uploaded', 'file-is-reupload' );
+                document.querySelector('.reupload-image').style.background = 'rgba(0,0,0,0.5)';
+
+            });
+            document.querySelector('.reupload-image').addEventListener('mouseleave', function () {
+                document.querySelector('.fa-cloud-upload').style.color = '#adadad';
+                document.querySelector('.fa-cloud-upload').classList.replace('file-is-reupload', 'file-is-uploaded' );
+                document.querySelector('.reupload-image').style.background = '';
+
+            });
+
+
+
+            document.querySelector('#image').addEventListener('change', function (event) {
+                let reader = new FileReader();
+                reader.readAsDataURL(this.files[0]);
+                reader.onload = function(){
+
+                    document.querySelector('.fa-cloud-upload').classList.add('file-is-uploaded');
+
+                    document.querySelector('.uploaded-image').style.border = '0';
+                    document.querySelector('.reupload-image').style.border = '1px solid #ced4da';
+                    let output = document.querySelector('#uploaded-image');
+                    let outputText = document.querySelector('.upload-image');
+                    outputText.classList.add('success-upload');
+                    outputText.innerHTML = 'Изображение загружено ' + '<i class="far fa-check-circle"></i>';
+                    output.src = reader.result;
+                };
+            });
+        };
+    </script>
+@endpush
+
+

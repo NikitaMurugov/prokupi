@@ -28,29 +28,35 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="image" class="small"> Загрузка нового изображения:</label>
-                            <input id="image" type="file" class="form-control-file " name="image" accept="image/jpeg, image/png">
-{{--                            <input id="image" type="file" class="form-control-file @error('image') is-invalid @enderror" name="image" accept="image/jpeg, image/png">--}}
-                            <small class="form-text text-muted">Это изображение должно быть привлекательным и приятным для пользователей.</small>
 
-                            @error('image')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
                         </div>
 
 
                         <div class="form-group">
 
-                            <div class=" col-lg-6 col-md-12 col-sm-12 card-img-left"
-                                 style="background: url('{{'/' . $product->img}}') center no-repeat;
-                                     height: 350px;
-                                     background-size: cover;
-                                     border-radius: 10px;
-                                     border: 1px  solid #6c757d; padding: 0">
+                            <label for="image" class="small upload-image"  id=""> Загрузка нового изображения:</label>
+
+                            <div class="file-preview-image col-md-12 col-sm-12 card-img-left" >
+
+                                <i class="fal fa-cloud-upload file-is-uploaded"></i>
+                                <img id="preview-uploaded-image" src="{{'/' . $product->img}}"  style="max-height: 350px" alt="Картинка товара">
+                                <div class="file-preview-image-reupload"></div>
                                 <span class="card_old-img">Старое изображение</span>
                             </div>
+                            <input style="display: none"
+                                   id="image"
+                                   type="file"
+                                   class="form-control-file "
+                                   name="image"
+                                   accept="image/jpeg, image/png">
+                            {{--                            <input id="image" type="file" class="form-control-file @error('image') is-invalid @enderror" name="image" accept="image/jpeg, image/png">--}}
+                            <small class="form-text text-muted">Это изображение должно быть привлекательным и приятным для пользователей.</small>
+
+                            @error('image')
+                            <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
 
                         </div>
 
@@ -143,7 +149,55 @@
     <script>
         window.onload = function  () {
             let deleteButton = document.querySelector('.delete-product-button');
-            let modalAccept;
+
+            document.querySelector('#preview-uploaded-image').addEventListener('click',function() {
+                document.querySelector('#image').click();
+            });
+            document.querySelector('.file-preview-image-reupload').addEventListener('click',function() {
+                document.querySelector('#image').click();
+            });
+            document.querySelector('.fa-cloud-upload').addEventListener('click',function() {
+                document.querySelector('#image').click();
+            });
+
+            document.querySelector('.fa-cloud-upload').addEventListener('mousemove', function () {
+                document.querySelector('.fa-cloud-upload').classList.replace('file-is-uploaded', 'file-is-reupload' );
+                document.querySelector('.file-preview-image-reupload').style.background = 'rgba(0,0,0,0.5)';
+
+            });
+            document.querySelector('.fa-cloud-upload').addEventListener('mouseleave', function () {
+                document.querySelector('.fa-cloud-upload').classList.replace('file-is-reupload', 'file-is-uploaded' );
+                document.querySelector('.file-preview-image-reupload').style.background = '';
+
+            });
+            document.querySelector('.file-preview-image-reupload').addEventListener('mousemove', function () {
+                document.querySelector('.fa-cloud-upload').style.color = '#f0f0f0';
+                document.querySelector('.fa-cloud-upload').classList.replace('file-is-uploaded', 'file-is-reupload' );
+                document.querySelector('.file-preview-image-reupload').style.background = 'rgba(0,0,0,0.5)';
+
+            });
+            document.querySelector('.file-preview-image-reupload').addEventListener('mouseleave', function () {
+                document.querySelector('.fa-cloud-upload').style.color = '#adadad';
+                document.querySelector('.fa-cloud-upload').classList.replace('file-is-reupload', 'file-is-uploaded' );
+                document.querySelector('.file-preview-image-reupload').style.background = '';
+
+            });
+
+
+
+            document.querySelector('#image').addEventListener('change', function (event) {
+                let reader = new FileReader();
+                reader.readAsDataURL(this.files[0]);
+                reader.onload = function(){
+
+                    document.querySelector('.card_old-img').innerHTML = 'Новое изображение';
+
+                    let output = document.querySelector('#preview-uploaded-image');
+                    let outputText = document.querySelector('.upload-image');
+                    outputText.innerHTML += ' <i class="far fa-check-circle"></i>';
+                    output.src = reader.result;
+                };
+            });
 
             deleteButton.addEventListener('click', function (ev) {
 
