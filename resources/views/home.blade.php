@@ -11,16 +11,160 @@
         </div>
     @endif
 
-    <div class="window window__title">
-            @guest
-                <h1>Добро пожаловать, гость!</h1>
-{{--                <p>Если вы хотите выложить свой товар то <a href="{{ route("register") }}">зарегистрируйтесь</a>--}}
-{{--                или <a href="{{ route("login") }}">войдите</a> на наш сайт.</p>--}}
+    <div class="mb-5 window home__title">
+        <div class="container-xl container-lg container-md container-sm ">
+            <div class="row">
+                @guest
+                    <div class="col-12">
+
+                        <h1 class="h2 mt-5 text-center ">ПРОКУПИ<span class="small text-muted" >.КУРГАН</span> - это площадка для Ваших объявлений!</h1>
+
+                        <hr class="mt-5 border-bottom" style="width: 50%;">
+
+                        <p class="mt-5 lead text-center">У вас завалялось что-то не нужное дома и ни как не доходят руки до того чтобы кому нибудь отдать?</p>
+                        <p class="mt-0 lead text-center"><mark style="background: #eed3ff">Мы решим вашу  проблему!</mark></p>
+
+                        <hr class="mt-5 border-bottom" style="width: 50%;">
+
+                        <h1 class="h4 mt-5 text-center "> У нас вы можете:</h1>
+                        <div class="mt-5 row">
+                            <div class="col text-center">
+                                <i class="fal fa-eye" style="font-size: 50px"></i>
+                                <p class="mt-4 lead">Смотреть</p>
+                                </div>
+                            <div class="col text-center">
+
+                                <i class="fal fa-shopping-cart" style="font-size: 50px"></i>
+                                <p class="mt-4 lead">Покупать</p>
+                                </div>
+                            <div class="col text-center">
+                                <i class="fal fa-hand-holding-usd" style="font-size: 50px"></i>
+                                <p class="mt-4 lead">Продавать</p>
+                            </div>
+                        </div>
 
 
-            @else
-                <h1>Добро пожаловать, {{ Auth::user()->name }}!</h1>
-            @endguest
+                        <p class="my-5 text-center"><a href=""></a><i class="far fa-chevron-down" style="font-size: 20px; color: #CD75F6"></i></p>
+                    </div>
+                    <div style="display: none" class="col-4">
+                        <form class="form-signin" method="POST" action="{{ route('login') }}" >
+                            @csrf
+                            <div class="text-center mb-4">
+                                <a style="text-decoration: none" href="{{ route('home') }}">
+                                    <div class="logo"  style="width: 190px; margin: 0 auto 50px">
+                                        <span>прокупи</span><span class='logo-city'>.курган</span>
+                                    </div>
+                                </a>
+                                <h1 class="h6 mb-3 font-weight-normal text-muted">*Для того  чтобы полноценно  пользоваться  сайтом  необходимо выполнить вход на сайт</h1>
+                                <br>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="email" id="inputEmail" class="form-control @error('email')is-invalid @enderror" placeholder="Email" name="email" required autofocus>
+                                <label for="inputEmail">Email</label>
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="password" id="inputPassword" class="form-control @error('password')is-invalid @enderror" placeholder="Пароль" name="password" required>
+                                <label for="inputPassword">Пароль</label>
+                                @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="checkbox mb-3">
+                                <label>
+                                    <input type="checkbox" value="remember-me"> Запомнить меня
+                                </label>
+                            </div>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+                        </form>
+
+                    </div>
+                @else
+                    <div class="col-12">
+
+                        <h1 class="h2 mt-5 text-center ">ПРОКУПИ<span class="small text-muted" >.КУРГАН</span> - это площадка для Ваших объявлений!</h1>
+
+                        <hr class="mt-5 border-bottom" style="width: 50%;">
+
+                        <p class="mt-5 lead text-center">У вас завалялось что-то не нужное дома и ни как не доходят руки до того чтобы кому нибудь отдать?</p>
+                        <p class="mt-0 lead text-center"><mark style="background: #eed3ff">Мы решим вашу  проблему!</mark></p>
+
+                        <hr class="mt-5 border-bottom" style="width: 50%;">
+
+                        <h1 class="h4 mt-5 text-center "> У нас вы можете:</h1>
+                        <div class="mt-5 row">
+                            <div class="col text-center">
+                                <i class="fal fa-eye" style="font-size: 50px"></i>
+                                <p class="mt-4 lead">Смотреть</p>
+                            </div>
+                            <div class="col text-center">
+
+                                <i class="fal fa-shopping-cart" style="font-size: 50px"></i>
+                                <p class="mt-4 lead">Покупать</p>
+                            </div>
+                            <div class="col text-center">
+                                <i class="fal fa-hand-holding-usd" style="font-size: 50px"></i>
+                                <p class="mt-4 lead">Продавать</p>
+                            </div>
+                        </div>
+
+
+                        <p class="my-5 text-center"><a href=""></a><i class="far fa-chevron-down" style="font-size: 20px; color: #CD75F6"></i></p>
+                    </div>
+                    <div style="display: none" class="col-4">
+                        <form class="form-signin" method="POST" action="{{ route('login') }}" >
+                            @csrf
+                            <div class="text-center mb-4">
+                                <a style="text-decoration: none" href="{{ route('home') }}">
+                                    <div class="logo"  style="width: 190px; margin: 0 auto 50px">
+                                        <span>прокупи</span><span class='logo-city'>.курган</span>
+                                    </div>
+                                </a>
+                                <h1 class="h6 mb-3 font-weight-normal text-muted">*Для того  чтобы полноценно  пользоваться  сайтом  необходимо выполнить вход на сайт</h1>
+                                <br>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="email" id="inputEmail" class="form-control @error('email')is-invalid @enderror" placeholder="Email" name="email" required autofocus>
+                                <label for="inputEmail">Email</label>
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="password" id="inputPassword" class="form-control @error('password')is-invalid @enderror" placeholder="Пароль" name="password" required>
+                                <label for="inputPassword">Пароль</label>
+                                @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="checkbox mb-3">
+                                <label>
+                                    <input type="checkbox" value="remember-me"> Запомнить меня
+                                </label>
+                            </div>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+                        </form>
+
+                    </div>
+                @endguest
+            </div>
+        </div>
     </div>
 
     <h1 class="window-title">Популярные категории товаров:</h1>
