@@ -118,7 +118,7 @@
                         </div>
 
 
-                        <p class="my-5 text-center"><a href=""></a><i class="far fa-chevron-down" style="font-size: 20px; color: #CD75F6"></i></p>
+                        <p class="my-5 text-center"><a href=""></a><i class="far fa-chevron-down" style="font-size: 20px; color: #e1e1e1"></i></p>
                     </div>
                     <div style="display: none" class="col-4">
                         <form class="form-signin" method="POST" action="{{ route('login') }}" >
@@ -192,7 +192,7 @@
                     <div class="card ">
                         <div class="card-img-top" style="background: url('{{ '/' . $product->img }}') center; width: 100%;height: 200px; background-size: cover; border-radius: 2px"></div>
                         <div class="card-body">
-                            <h5 class="card-title ">{{ $product->name }}</h5>
+                            <h5 class="card-title overflow-hidden">{{ $product->name }}</h5>
                             <h5 class="card-subtitle text-primary">{{ $product->price }} руб.</h5>
                             <p class="card-text card-text-fixed text-black-50">{{ $product->description }}</p>
                         </div>

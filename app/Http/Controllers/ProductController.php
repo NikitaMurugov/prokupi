@@ -32,7 +32,14 @@ class ProductController extends Controller
 //        \DB::enableQueryLog();
         $product = Product::with('category', 'user')->where('id',(int)$req->route('product_id'))->first();
         if (!$product == null) {
-            return view('product.product', compact('product'));
+            $product_cat = Category::with(['products' => function($query) use ($product) {
+                $query->limit(8)
+                    ->orderByRaw('created_at DESC')
+                    ->where('id', '!=', $product->id);
+            }])
+                ->where('id',$product->category_id)
+                ->first();
+            return view('product.product', compact('product','product_cat'));
         } else {
             return back();
         }
@@ -106,15 +113,15 @@ class ProductController extends Controller
     public function submit(ProductRequest $req) {
 
         if (0) {
-            for ($i = 1; $i <= 49;  $i++) {
+            for ($i = 1; $i <= 19;  $i++) {
                 $faker = Factory::create('ru_RU');
 
                 $model = new Product;
                 $model->fill([
-                    'name'         => $faker->word,
+                    'name'         => $faker->realText($maxNbChars = 20, $indexSize = 1),
                     'category_id'  => rand(1,8),
                     'user_id'      => rand(1,11),
-                    'description'  => $faker->realText($maxNbChars = 200, $indexSize = 2),
+                    'description'  => $faker->realText($maxNbChars = 400, $indexSize = 4),
                     'phone_number' => $faker->phoneNumber,
                     'location'     => $faker->address,
                     'price'        => rand(1000,50000),
