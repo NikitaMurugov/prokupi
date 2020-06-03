@@ -124,7 +124,8 @@
                 @foreach($user->products as $product)
                     <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                         <div class="card ">
-                            <div class="card-img-top" style="background: url('{{ '/' . $product->img }}') center; height: 200px; background-size: cover; border-radius: 2px"></div>
+                            <div class="card-img-top" style="background: url('{{ '/' . $product->img }}') center; height: 200px; ">
+                                <small class="text-center id-product" style=""> объявление №{{$product->id}}</small></div>
                             <div class="card-body">
                                 <h5 class="card-title ">{{ $product->name }}</h5>
                                 <h5 class="card-subtitle text-primary">{{ $product->price }} руб.</h5>
@@ -150,7 +151,7 @@
             </div>
         </div>
     @endif
-    @if (!empty($del_products))
+    @if(!$del_products->isEmpty())
         <div class="window window__title window__title_dark window__title_onsearch">
             <div class="window__title__background_dark"></div>
 
@@ -163,7 +164,9 @@
                 @foreach($del_products as $product)
                     <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                         <div class="card ">
-                            <div class="card-img-top" style="background: url('{{ '/' . $product->img }}') center; height: 200px; background-size: cover; border-radius: 2px"></div>
+                            <div class="card-img-top" style="background: url('{{ '/' . $product->img }}') center; height: 200px; background-size: cover; border-radius: 2px">
+                                <small class="text-center id-product" > объявление №{{$product->id}}</small>
+                            </div>
                             <div class="card-body">
                                 <h5 class="card-title ">{{ $product->name }}</h5>
                                 <h5 class="card-subtitle text-primary">{{ $product->price }} руб.</h5>
