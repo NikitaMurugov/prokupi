@@ -136,9 +136,10 @@
 .section-title {
     width: 220px;
     height: 100px;
+    text-align: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
 }
 
 .card {
