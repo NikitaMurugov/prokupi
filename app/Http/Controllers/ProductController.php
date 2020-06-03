@@ -112,24 +112,7 @@ class ProductController extends Controller
 
     public function submit(ProductRequest $req) {
 
-        if (0) {
-            for ($i = 1; $i <= 19;  $i++) {
-                $faker = Factory::create('ru_RU');
 
-                $model = new Product;
-                $model->fill([
-                    'name'         => $faker->realText($maxNbChars = 20, $indexSize = 1),
-                    'category_id'  => rand(1,8),
-                    'user_id'      => rand(1,11),
-                    'description'  => $faker->realText($maxNbChars = 400, $indexSize = 4),
-                    'phone_number' => $faker->phoneNumber,
-                    'location'     => $faker->address,
-                    'price'        => rand(1000,50000),
-                    'img'          => 'storage/!/thumbs/products/' . $faker->image('storage/!/thumbs/products/', 640,480, null, false)
-                ]);
-                $model->save();
-            }
-        }
 
         $model = new Product;
 
@@ -165,6 +148,24 @@ class ProductController extends Controller
         }
         $img->save($model->img_path);
 
+        if (0) {
+            for ($i = 1; $i <= 29;  $i++) {
+                $faker = Factory::create('ru_RU');
+
+                $model = new Product;
+                $model->fill([
+                    'name'         => $faker->realText($maxNbChars = 20, $indexSize = 1),
+                    'category_id'  => rand(1,8),
+                    'user_id'      => rand(1,11),
+                    'description'  => $faker->realText($maxNbChars = 400, $indexSize = 4),
+                    'phone_number' => $faker->phoneNumber,
+                    'location'     => $faker->address,
+                    'price'        => rand(1000,50000),
+                    'img'          => 'storage/!/thumbs/products/' . $faker->image('storage/!/thumbs/products/', 640,480, null, false)
+                ]);
+                $model->save();
+            }
+        }
 
         return  redirect()->route('product.get', $model->id);
     }

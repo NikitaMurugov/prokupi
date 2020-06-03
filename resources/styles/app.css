@@ -217,7 +217,6 @@ span.card_old-img {
     background-size: cover;
     font-size: 16px;
     height: 150px;
-    border: 1px solid #ced4da;
     border-radius: .25rem;
     text-align: center;
     color: #495057;
@@ -231,6 +230,7 @@ span.card_old-img {
     border-radius: .25rem;
     height: 150px;
     width: 90%;
+    border: 1px solid #ced4da;
     z-index: 5;
     box-sizing: border-box;
 }
