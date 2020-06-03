@@ -34,7 +34,7 @@
                                 <span class="text-muted small">Цена товара: </span>
                             </div>
                             <div class="card-text">
-                                <input type="text" id="price" class="form-control form-control-plaintext col-md-8 col-sm-12" value="{{ $product->price }} ₽">
+                                <input type="text" id="price" class="form-control-plaintext col-md-8 col-sm-12" value="{{ $product->price }} ₽"  readonly>
 
                             </div>
                         </div>
@@ -58,8 +58,8 @@
                             <div class="card-text">
                                 <input type="text"
                                        id="phone_number"
-                                       class="form-control form-control-plaintext"
-                                       value="{{ $product->phone_number }}">
+                                       class="form-control-plaintext"
+                                       value="{{ $product->phone_number }}" readonly>
 
                             </div>
                         </div>

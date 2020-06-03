@@ -97,7 +97,7 @@
                 </div>
                 <div class="form-label-group">
                     <input type="password" id="inputPasswordСonfirm" class="form-control @error('password')is-invalid @enderror" placeholder="Повторите пароль" name="password_confirmation" autocomplete="new-password" >
-                    <label for="inputPasswordСonfirm">Повторите пароль</label>
+                    <label for="inputPasswordСonfirm ">Повторите пароль</label>
                 </div>
 
                 <br>

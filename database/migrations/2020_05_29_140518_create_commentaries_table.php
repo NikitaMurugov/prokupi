@@ -18,7 +18,7 @@ class CreateCommentariesTable extends Migration
             $table->integer('product_id');
             $table->integer('sender_id');
             $table->text('message');
-            $table->boolean('disabled')->default(false);
+            $table->boolean('is_enabled')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

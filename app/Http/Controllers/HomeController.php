@@ -30,7 +30,9 @@ class HomeController extends Controller
         $categories = Category::where('is_enabled', true)->get();
         $products = Product::with(['category' => function ($q) {
             $q->where('is_enabled', true);
-        }])->orderByRaw('created_at DESC')->limit(40)->get();
+        }])
+            ->where('is_enabled', true)
+            ->orderByRaw('created_at DESC')->limit(40)->get();
 //        dd(\DB::getQueryLog());
         //        $categories = Category::get();
 //        foreach ($categories as $category) {
