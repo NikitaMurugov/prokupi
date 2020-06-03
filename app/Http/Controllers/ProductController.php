@@ -22,7 +22,7 @@ class ProductController extends Controller
 
     public function add()
     {
-        $categories = Category::with('products')->get();
+        $categories = Category::with('products')->where('is_enabled', true)->get();
         return view('product.product_add', compact('categories'));
     }
 
@@ -38,6 +38,7 @@ class ProductController extends Controller
                     ->where('id', '!=', $product->id);
             }])
                 ->where('id',$product->category_id)
+                ->where('is_enabled', true)
                 ->first();
             return view('product.product', compact('product','product_cat'));
         } else {
@@ -52,11 +53,13 @@ class ProductController extends Controller
     {
 
 //        \DB::enableQueryLog();
-        $product = Product::with('category', 'user')->where('id',(int)$req->route('product_id'))->where('user_id', Auth::id())->first();
+        $product = Product::with(['category'=>  function ($q){
+            $q->where('is_enabled', true);
+        }, 'user'])->where('id',(int)$req->route('product_id'))->where('user_id', Auth::id())->first();
 //        dd(\DB::getQueryLog());
 //        dd($product);
         if ($product !== null) {
-            $categories = Category::with('products')->get();
+            $categories = Category::with('products')->where('is_enabled', true)->get();
             return view('product.product_edit', compact('product', 'categories'));
         }  else {
             return back();
@@ -67,7 +70,7 @@ class ProductController extends Controller
         $categories      = Category::with('products')->get();
         $search   = $request->input('search');
         $cat   = $request->input('category_id');
-        $category      = Category::with('products')->where('id',(int)$cat)->first();
+        $category      = Category::with('products')->where('is_enabled',true)->where('id',(int)$cat)->first();
         if (isset($search)) {
             $products = Product::
 

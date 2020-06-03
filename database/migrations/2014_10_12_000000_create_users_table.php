@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 use Faker\Factory;
 
@@ -15,7 +16,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('name');
             $table->string('s_name')->default('');
             $table->string('t_name')->default('');;
@@ -30,6 +31,19 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+
+        DB::table('users')->insert([
+            'name' => 'admin',
+            's_name' => ' ',
+            't_name' => ' ',
+            'email' => 'admin@prokupi.ru',
+            'phone_number' => '+7 (111) 111-1111',
+            'location' => ' ',
+            'description' => ' ',
+            'is_admin' => true,
+            'password' => Hash::make("admin"),
+        ]);
 
 
 
