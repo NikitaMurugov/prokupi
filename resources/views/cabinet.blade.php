@@ -4,6 +4,7 @@
 
 @section('content')
 
+
     <div class="window">
     </div>
     <div class="container-xl container-lg container-md container-sm">
@@ -95,11 +96,11 @@
                         </div>
                     </div>
                     <div class="row ">
-                        <div class="col-md-6 col-sm-12">
-                            <button type="submit" class="btn btn-info btn-fill pull-right button-submitform float-left">Обновить пользователя</button>
+                        <div class=" col-md-6 col-12">
+                            <button type="submit" class="btn btn-info btn-fill pull-right button-submitform float-left col-md-8 col-12">Обновить пользователя</button>
                         </div>
-                        <div class="col-md-6 col-sm-12">
-                            <div type="submit" class="btn btn-danger btn-fill button-deleteuser float-right">Отключить пользователя</div>
+                        <div class="mt-4 col-md-6 col-12">
+                            <div type="submit" class="btn btn-danger btn-fill button-deleteuser float-right col-md-8 col-12">Отключить пользователя</div>
                         </div>
                     </div>
 
@@ -129,18 +130,15 @@
                             <div class="card-body">
                                 <h5 class="card-title ">{{ $product->name }}</h5>
                                 <h5 class="card-subtitle text-primary">{{ $product->price }} руб.</h5>
-                                <p class="card-text text-black-50" style="height: 100px; overflow: hidden">{{ $product->description }}</p>
-                            </div>
-                            <div class="card-body">
+                                <p class="card-text card-text-fixed text-black-50">{{ $product->description }}</p>
 
-                                <form method="get" action="{{ route('search') }}">
+                                <form method="get" action="{{ route('search') }}" class="mt-4">
                                     @csrf
-                                    <a href="{{asset('product/edit/' . $product->id)}}" class="text-muted">Редактировать <i class="fal fa-pencil-alt text-muted" style="width: 25px;height: 25px; color: #000;"></i></a>
+                                    <a href="{{asset('product/edit/' . $product->id)}}" class="card-text text-muted">Редактировать <i class="fal fa-pencil-alt text-muted" style="width: 25px;height: 25px; color: #000;"></i></a>
                                     <br>
                                     <input type="text" name="category_id" value="{{ $product->category->id }}" style="display: none" disabled>
-                                    <input type="submit" class="btn btn-sm btn-outline-info" value="{{ $product->category->name }}">
+                                    <input type="submit" class="mt-4 btn btn-sm btn-outline-info" value="{{ $product->category->name }}">
                                 </form>
-
                             </div>
                             <div class="card-footer">
                                 <small class="text-muted"> Дата: {{ \Carbon\Carbon::parse($product->created_at)->format('d.m.Y') }}</small>
@@ -151,13 +149,15 @@
             </div>
         </div>
     @endif
+
     @if(!$del_products->isEmpty())
         <div class="window window__title window__title_dark window__title_onsearch">
             <div class="window__title__background_dark"></div>
 
-            <h3>
+            <h1 class="h6">
                 Завершенные объявления:
-            </h3><br>
+            </h1>
+            <br>
         </div>
         <div class="container-xl container-lg container-md container-sm">
             <div class="row">

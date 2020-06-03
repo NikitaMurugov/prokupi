@@ -163,9 +163,10 @@
 }
 .card-text-fixed {
     height: 80px;
+    overflow-wrap: break-spaces;
     overflow: hidden;
-
 }
+
 
 span.card_old-img {
     position: absolute;

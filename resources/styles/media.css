@@ -1,7 +1,10 @@
 @media screen and (max-width: 1220px) {
 
+
+
     .window  {
-        width: 650px;
+        height: 200px;
+        width: 100vw;
     }
 
     .section {
@@ -25,7 +28,30 @@
     }
 
     .window  {
-        width: 450px;
+        height: 200px;
+        width: 100vw;
+    }
+    .window__title__background {
+        width: 100vw;
+        background-size: 1200px;
+    }
+    .window__title__background_dark {
+        width: 100vw;
+        background-size: 1200px;
+    }
+
+    .window h3 {
+        font-size: 18px;
+    }
+
+    .card .card-title, .card-subtitle{
+        font-size: 18px;
+    }
+    .card-text-fixed {
+        height: 50px;
+    }
+    .card-text {
+        font-size: 16px;
     }
 }
 
@@ -34,10 +60,16 @@
         padding: 50px 20px;
     }
     .window  {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 350px;
+        height: 100px;
+    }
+    .window h3 {
+        font-size: 14px;
+    }
+
+    .window__title__background {
+        background-size: 900px;
+    }
+    .window__title__background_dark {
+        background-size: 900px;
     }
 }
