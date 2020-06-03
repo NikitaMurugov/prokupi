@@ -154,9 +154,9 @@
         <div class="window window__title window__title_dark window__title_onsearch">
             <div class="window__title__background_dark"></div>
 
-            <h1 class="h6">
+            <h3>
                 Завершенные объявления:
-            </h1>
+            </h3>
             <br>
         </div>
         <div class="container-xl container-lg container-md container-sm">
