@@ -1,0 +1,43 @@
+@media screen and (max-width: 1220px) {
+
+    .window  {
+        width: 650px;
+    }
+
+    .section {
+        width: 200px;
+        height: 200px;
+        flex-wrap: nowrap;
+    }
+    .section-image  {
+        width: 180px;
+        height: 120px;
+    }
+    .section-title {
+        width: 200px;
+
+    }
+}
+
+@media screen and (max-width:800px) {
+    .menu {
+        padding: 30px 40px;
+    }
+
+    .window  {
+        width: 450px;
+    }
+}
+
+@media screen and (max-width:479px) {
+    .menu {
+        padding: 50px 20px;
+    }
+    .window  {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 350px;
+    }
+}

@@ -31,7 +31,7 @@ class HomeController extends Controller
         $products = Product::with(['category' => function ($q) {
             $q->where('is_enabled', true);
         }])
-            ->where('is_enabled', true)
+//            ->where('is_enabled', true)
             ->orderByRaw('created_at DESC')->limit(40)->get();
 //        dd(\DB::getQueryLog());
         //        $categories = Category::get();

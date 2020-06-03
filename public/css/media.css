@@ -34,6 +34,10 @@
         padding: 50px 20px;
     }
     .window  {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         width: 350px;
     }
 }
