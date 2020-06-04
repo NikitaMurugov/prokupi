@@ -48,7 +48,11 @@
             @endif
             @else
                 <a class='text-dark user-name-text ' href="{{ route('cabinet') }}">
-                    <i class="far fa-user-alt"></i>
+                    @if(Auth::user()->is_admin)
+                        <i class="far fa-user-secret"></i>
+                    @else
+                        <i class="far fa-user-alt"></i>
+                    @endif
                     {{ Auth::user()->name }}
                 </a>
 

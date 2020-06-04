@@ -55,10 +55,10 @@
                 </div>
 
                 <div class="form-label-group">
-                    <input type="text" id="inputPhone" class="form-control @error('password')is-invalid @enderror bfh-phone" data-format="+7 (ddd) ddd-dddd" value="{{ old('phone_number') }}" name="phone_number" placeholder="Номер телефона">
+                    <input type="text" id="inputPhone" class="form-control @error('phone_number')is-invalid @enderror bfh-phone" data-format="+7 (ddd) ddd-dddd" value="{{ old('phone_number') }}" name="phone_number" placeholder="Номер телефона">
                     <label for="inputPhone">Номер телефона</label>
                     <small class="form-text text-muted">Для будущей связи с покупателями.</small>
-                    @error('password')
+                    @error('phone_number')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -66,8 +66,8 @@
                 </div>
 
                 <div class="form-label-group">
-                    <input type="text" id="inputAdress" class="form-control @error('password')is-invalid @enderror" value="{{ old('location') }}" name="location" placeholder="Адресс">
-                    <label for="inputAdress">Адресс</label>
+                    <input type="text" id="inputAddress" class="form-control @error('location')is-invalid @enderror" value="{{ old('location') }}" name="location" placeholder="Адресс">
+                    <label for="inputAddress">Адресс</label>
                     <small class="form-text text-muted">В дальнейшем понадобится для заполнения объявлений, пользователям показываться не будет.</small>
                     @error('location')
                         <span class="invalid-feedback" role="alert">
@@ -77,7 +77,7 @@
                 </div>
 
                 <div class="form-label-group">
-                    <input type="text" id="inputDescription" class="form-control @error('password')is-invalid @enderror" name="description" placeholder="Немного о себе">{{ old('location') }}
+                    <input type="text" id="inputDescription" class="form-control @error('description')is-invalid @enderror" name="description" placeholder="Немного о себе">{{ old('location') }}
                     <label for="inputDescription">Немного о себе</label>
                     @error('description')
                         <span class="invalid-feedback" role="alert">
