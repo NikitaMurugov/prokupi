@@ -31,27 +31,31 @@
                 <a class='btn btn-dark' href="{{ route('product.add') }}">Подать объявление</a>
             @endguest
 
+
+            @auth
+                @if(Auth::user()->is_admin)
+                    <a class='text-dark' href="{{ route('admin') }}">Админ панель <i class="far fa-external-link-square" style="font-size: 12px"></i> </a>
+                @endif
+            @endauth
+
             @if(request()->path() !== '/')
                 <a class='text-dark' href="{{ route('home') }}">Главная  </a>
             @endif
 
-{{--            @if(Auth::guest())--}}
-{{--                @if(Auth::user()->is_admin)--}}
-{{--                    <a class='text-dark' href="{{ route('admin') }}">Админ панель  </a>--}}
-{{--                @endif--}}
-{{--            @endif--}}
 
             @guest
                 <a class='text-dark' href="{{ route('login') }}">{{ __('Вход') }}</a>
             @if (Route::has('register'))
                 <a class='text-dark' href="{{ route('register') }}">{{ __('Регистрация') }}</a>
             @endif
+
             @else
+
                 <a class='text-dark user-name-text ' href="{{ route('cabinet') }}">
                     @if(Auth::user()->is_admin)
-                        <i class="far fa-user-secret"></i>
+                        <i class="far fa-user-secret" style="font-size: 14px"></i>
                     @else
-                        <i class="far fa-user-alt"></i>
+                        <i class="far fa-user-alt" style="font-size: 14px"></i>
                     @endif
                     {{ Auth::user()->name }}
                 </a>

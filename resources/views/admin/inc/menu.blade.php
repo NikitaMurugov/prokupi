@@ -10,10 +10,10 @@
         </div>
 
         <div class="menu-right menu-right-sm" style="display: none"><i class="far fa-bars" style="font-size: 24px;cursor: pointer"></i></div>
-        <div class="menu-right menu-right-block menu-right-list">
+        <div class="menu-right menu-right-block menu-right-list align-items-center">
             <div class="fal fa-times"  style="cursor: pointer; font-size: 24px"></div>
 
-            <a class='btn ' href="{{ route('home') }}">Обратно на страницу  </a>
+            <a class='btn text-muted' style="font-size: 12px;" href="{{ route('home') }}">Обратно на страницу <i class="far fa-external-link-square" style="font-size: 10px"></i> </a>
             @if($path == 'admin/users') @endif
             <a class='btn @if($path == 'admin/users') btn-dark @endif' href="{{ route('admin.users') }}">Пользователи</a>
             <a class='btn @if($path == 'admin/products') btn-dark @endif' href="{{ route('admin.products') }}">Объявления</a>
