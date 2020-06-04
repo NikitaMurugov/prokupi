@@ -120,7 +120,7 @@
                                 <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Цена') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="price" type="text" placeholder="Например: 12000" class="form-control @error('price') is-invalid @enderror" data-format="*d руб." name="price" value="{{ old('price') }}" autofocus>
+                                    <input id="price" type="number" placeholder="Например: 12000" class="form-control @error('price') is-invalid @enderror" data-format="*d руб." name="price" value="{{ old('price') }}" autofocus>
 
                                     @error('price')
                                     <span class="invalid-feedback" role="alert">

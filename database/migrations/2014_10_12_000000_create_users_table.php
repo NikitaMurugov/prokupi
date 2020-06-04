@@ -43,6 +43,7 @@ class CreateUsersTable extends Migration
             'description' => ' ',
             'is_admin' => true,
             'password' => Hash::make("admin"),
+            'created_at' => now(),
         ]);
 
 

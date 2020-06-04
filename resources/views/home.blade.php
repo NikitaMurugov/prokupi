@@ -109,7 +109,7 @@
                 </form>
             @endforeach
     </div>
-    <h1 class="window-title">Последние добавленные товары:</h1>
+    <h1 class="window-title">Последние поданные объявления:</h1>
     <div class="container-xl container-lg  container-md container-sm">
         <div class="row">
             @foreach($products as $product)

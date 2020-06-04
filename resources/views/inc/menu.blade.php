@@ -6,6 +6,7 @@
 @endpush
 
 @section('menu')
+{{--    @dd(\Illuminate\Support\Facades\Auth::user())--}}
     <div class="menu">
         <div class="menu-left ">
             <a style="text-decoration: none" href="{{ route('home') }}">
@@ -33,6 +34,13 @@
             @if(request()->path() !== '/')
                 <a class='text-dark' href="{{ route('home') }}">Главная  </a>
             @endif
+
+{{--            @if(Auth::guest())--}}
+{{--                @if(Auth::user()->is_admin)--}}
+{{--                    <a class='text-dark' href="{{ route('admin') }}">Админ панель  </a>--}}
+{{--                @endif--}}
+{{--            @endif--}}
+
             @guest
                 <a class='text-dark' href="{{ route('login') }}">{{ __('Вход') }}</a>
             @if (Route::has('register'))
@@ -40,6 +48,7 @@
             @endif
             @else
                 <a class='text-dark user-name-text ' href="{{ route('cabinet') }}">
+                    <i class="far fa-user-alt"></i>
                     {{ Auth::user()->name }}
                 </a>
 

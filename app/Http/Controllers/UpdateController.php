@@ -31,7 +31,6 @@ class UpdateController extends Controller
             'phone_number',
             'location',
             'description',
-            'avatar',
             'password',
         ]));
         $user->save();

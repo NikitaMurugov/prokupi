@@ -115,8 +115,6 @@ class ProductController extends Controller
 
     public function submit(ProductRequest $req) {
 
-
-
         $model = new Product;
 
         $model->fill([
@@ -151,8 +149,8 @@ class ProductController extends Controller
         }
         $img->save($model->img_path);
 
-        if (0) {
-            for ($i = 1; $i <= 29;  $i++) {
+        if (1) {
+            for ($i = 1; $i <= 5;  $i++) {
                 $faker = Factory::create('ru_RU');
 
                 $model = new Product;
