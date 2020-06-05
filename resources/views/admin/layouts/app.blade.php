@@ -15,6 +15,65 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="{{ mix('js/bootstrap-formhelpers.min.js') }}" defer></script>
+    <script>
+        window.onload = function () {
+
+            if (window.innerWidth <= 1200)  {
+                document.querySelector('.menu-right-sm').style.display = "block";
+                document.querySelector('.menu-right-block').style.display = "none";
+                document.querySelector('.fa-times').style.display = "block";
+                document.querySelector('.menu-right-block').classList.add('menu-right-list');
+                document.querySelector('.menu-right-block').classList.remove('menu-right');
+            } else {
+                document.querySelector('.menu-right-sm').style.display = "none";
+                document.querySelector('.fa-times').style.display = "none";
+                document.querySelector('.menu-right-block').style.display = "block";
+                document.querySelector('.menu-right-block').classList.remove('menu-right-list');
+                document.querySelector('.menu-right-block').classList.add('menu-right');
+            }
+
+            document.querySelector('.fa-times').addEventListener('click', function () {
+
+                if (document.querySelector('.menu-right-block').classList.contains('show')) {
+                    document.querySelector('.menu-right-block').style.display = "none";
+                    document.querySelector('.menu-right-block').classList.remove('show');
+                } else {
+                    document.querySelector('.menu-right-block').style.display = "flex";
+                    document.querySelector('.menu-right-block').classList.add('show');
+                }
+            });
+
+            document.querySelector('.fa-bars').addEventListener('click', function () {
+                console.log('clax');
+                if (!document.querySelector('.menu-right-block').classList.contains('show')) {
+                    document.querySelector('.menu-right-block').style.display = "flex";
+                    document.querySelector('.menu-right-block').classList.add('show');
+                } else {
+                    document.querySelector('.menu-right-block').style.display = "none";
+                    document.querySelector('.menu-right-block').classList.remove('show');
+                }
+
+            });
+
+            window.addEventListener('resize', function() {
+                if (window.innerWidth <= 1200)  {
+                    document.querySelector('.menu-right-sm').style.display = "block";
+                    document.querySelector('.menu-right-block').style.display = "none";
+                    document.querySelector('.fa-times').style.display = "block";
+                    document.querySelector('.menu-right-block').classList.add('menu-right-list');
+                    document.querySelector('.menu-right-block').classList.remove('menu-right');
+                } else {
+                    document.querySelector('.menu-right-sm').style.display = "none";
+                    document.querySelector('.fa-times').style.display = "none";
+                    document.querySelector('.menu-right-block').style.display = "block";
+                    document.querySelector('.menu-right-block').classList.remove('menu-right-list');
+                    document.querySelector('.menu-right-block').classList.add('menu-right');
+                }
+
+            });
+        }
+
+    </script>
     @stack('scripts')
 
 <!-- Icons -->
