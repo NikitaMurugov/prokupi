@@ -141,7 +141,6 @@
 
     <script>
         window.onload = function  () {
-            let deleteButton = document.querySelector('.delete-product-button');
 
             document.querySelector('#preview-uploaded-image').addEventListener('click',function() {
                 document.querySelector('#image').click();
@@ -192,60 +191,5 @@
                 };
             });
 
-            deleteButton.addEventListener('click', function (ev) {
-
-                let modalInfo = document.createElement('div');
-                modalInfo.classList.add('modal-window');
-                modalInfo.style.opacity = '0';
-                modalInfo.style.opacity = '1';
-
-                let modalBody = document.createElement('div');
-                modalBody.classList.add('modal-body');
-                modalBody.classList.add('modal-danger');
-                let blockTitle = document.createElement('div');
-                let modalTitle = document.createElement('h3');
-                modalTitle.classList.add('modal-body__title');
-                modalTitle.innerHTML = 'Внимание!';
-
-                let modalClose = document.createElement('div');
-                modalClose.classList.add('modal-close');
-                let faTimes = document.createElement('i');
-                faTimes.classList.add('fal');
-                faTimes.classList.add('fa-times');
-                faTimes.addEventListener('click',function (ev) {
-                    modalInfo.remove();
-                });
-
-                modalClose.appendChild(faTimes);
-                let modalHr = document.createElement('hr');
-                modalHr.classList.add('modal-body__hr');
-
-                blockTitle.appendChild(modalTitle);
-                blockTitle.appendChild(modalHr);
-
-                let modalText = document.createElement('span');
-                modalText.classList.add('modal-body__text');
-                modalText.innerHTML = 'Вы уверены  в том что хотите закрыть объявление?';
-
-                let modalSubmit = document.createElement('div');
-                modalSubmit.classList.add('modal-body__button');
-                modalSubmit.classList.add('btn');
-                modalSubmit.classList.add('btn-danger');
-                modalSubmit.innerHTML = 'Закрыть объявление';
-                modalSubmit.addEventListener('click', function () {
-                    let formDeleteButton = document.querySelector('#delete-product');
-                    formDeleteButton.click();
-                });
-                modalBody.appendChild(modalClose);
-                modalBody.appendChild(blockTitle);
-                modalBody.appendChild(modalText);
-                modalBody.appendChild(modalSubmit);
-
-
-                modalInfo.appendChild(modalBody);
-                document.body.appendChild(modalInfo);
-            });
-
-        };
     </script>
 @endpush
