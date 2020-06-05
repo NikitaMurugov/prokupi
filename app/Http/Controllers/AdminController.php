@@ -34,7 +34,7 @@ class AdminController extends Controller
 
 //            \DB::enableQueryLog();
             $products = Product::with('category', 'user')->orderByRaw('id ASC')->get();
-            $del_products = Product::onlyTrashed()->with('category', ['user'=>function  ($q) {
+            $del_products = Product::onlyTrashed()->with(['category', 'user'=>function  ($q) {
                 $q->withTrashed();
             }])->orderByRaw('id ASC')->get();
 //            dd(\DB::getQueryLog());

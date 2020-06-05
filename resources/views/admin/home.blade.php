@@ -26,7 +26,8 @@
                 </div>
             @endforeach
         </div>
-        <a href="{{route('admin.products')}}" class="text-muted text-center "><h1 class="h6">Все продукты...</h1></a>
+        <a href="{{ route('admin.products') }}" class="text-muted text-center "><h1 class="h6">Все продукты...</h1></a>
+
     </div>
     <h1 class="window-title">Последние добавленные пользователи:</h1>
     <div class="container-xl container-lg  container-md container-sm mb-5">
@@ -54,7 +55,7 @@
             @endforeach
         </div>
 
-        <a href="{{route('admin.products')}}" class="text-muted text-center"><h1 class="h6">Все пользователи...</h1></a>
+        <a href="{{route('admin.users')}}" class="text-muted text-center"><h1 class="h6">Все пользователи...</h1></a>
     </div>
 
 @endsection
