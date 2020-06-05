@@ -2,7 +2,6 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js');
 mix.js('resources/js/email-input.js', 'public/js/email-input.js');
-mix.js('resources/js/popper.min.js', 'public/js/popper.min.js');
 mix.js('resources/js/bootstrap-formhelpers.min.js', 'public/js/bootstrap-formhelpers.min.js');
 mix.styles(['resources/styles/default.css',
             'resources/styles/base.css',

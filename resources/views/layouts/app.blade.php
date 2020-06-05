@@ -14,20 +14,18 @@
     <title>Прокупи - @yield('title')</title>
 
     <!-- Scripts -->
-    <script src="{{ mix('js/popper.min.js') }}" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="{{ mix('js/app.js') }}" defer></script>
-    <script src="{{ mix('js/bootstrap-formhelpers.min.js') }}" defer></script>
-    <script>
-        window.onload = function () {
+    <script defer>
+        document.addEventListener("DOMContentLoaded", () => {
+            let searcher = document.querySelector('.form-search');
             if (window.innerWidth <= 1200) {
+                console.log('2');
                 document.querySelector('.menu-right-sm').style.display = "block";
                 document.querySelector('.menu-right-block').style.display = "none";
                 document.querySelector('.fa-times').style.display = "block";
                 document.querySelector('.menu-right-block').classList.add('menu-right-list');
                 document.querySelector('.menu-right-block').classList.remove('menu-right');
             } else {
+                console.log('2');
                 document.querySelector('.menu-right-sm').style.display = "none";
                 document.querySelector('.fa-times').style.display = "none";
                 document.querySelector('.menu-right-block').style.display = "block";
@@ -36,7 +34,7 @@
             }
 
             if (window.innerWidth <= 740) {
-                let searcher = document.querySelector('.form-search');
+                console.log('3');
                 document.querySelector('.menu-right-block').appendChild(searcher);
                 console.log(document.querySelector('.search-input').classList.contains('search-input-right'));
                 if (document.querySelector('.search-input').classList.contains('search-input-left')) {
@@ -44,7 +42,7 @@
                     document.querySelector('.search-input').classList.add('search-input-right');
                 }
             } else {
-                let searcher = document.querySelector('.form-search');
+                console.log('3');
                 document.querySelector('.menu-left ').appendChild(searcher);
                 if (document.querySelector('.search-input').classList.contains('search-input-right')) {
                     document.querySelector('.search-input').classList.remove('search-input-right');
@@ -54,11 +52,12 @@
             }
 
             document.querySelector('.fa-search').addEventListener('click', function () {
+                console.log('4');
                 document.querySelector('.search-input-button').click();
             });
 
             document.querySelector('.fa-times').addEventListener('click', function () {
-                console.log('cscs');
+                console.log('5times');
                 if (document.querySelector('.menu-right-block').classList.contains('show')) {
                     document.querySelector('.menu-right-block').style.display = "none";
                     document.querySelector('.menu-right-block').classList.remove('show');
@@ -69,6 +68,7 @@
             });
 
             document.querySelector('.fa-bars').addEventListener('click', function () {
+                console.log('5bars');
                 if (!document.querySelector('.menu-right-block').classList.contains('show')) {
                     document.querySelector('.menu-right-block').style.display = "flex";
                     document.querySelector('.menu-right-block').classList.add('show');
@@ -80,6 +80,8 @@
             });
 
             window.addEventListener('resize', function () {
+                console.log('resize');
+                console.log(window.innerWidth);
                 if (window.innerWidth <= 1200) {
                     document.querySelector('.menu-right-sm').style.display = "block";
                     document.querySelector('.menu-right-block').style.display = "none";
@@ -95,7 +97,6 @@
                 }
 
                 if (window.innerWidth <= 740) {
-                    let searcher = document.querySelector('.form-search');
                     document.querySelector('.menu-right-block').appendChild(searcher);
                     console.log(document.querySelector('.search-input').classList.contains('search-input-right'));
                     if (document.querySelector('.search-input').classList.contains('search-input-left')) {
@@ -103,7 +104,6 @@
                         document.querySelector('.search-input').classList.add('search-input-right');
                     }
                 } else {
-                    let searcher = document.querySelector('.form-search');
                     document.querySelector('.menu-left ').appendChild(searcher);
                     if (document.querySelector('.search-input').classList.contains('search-input-right')) {
                         document.querySelector('.search-input').classList.remove('search-input-right');
@@ -112,8 +112,17 @@
                     document.querySelector('.menu-left ').appendChild(searcher);
                 }
             });
-        }
+        });
+
+
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="{{ mix('js/app.js') }}" defer>
+
+    </script>
+    <script src="{{ mix('js/bootstrap-formhelpers.min.js') }}" defer></script>
+
     @stack('scripts')
 
     <!-- Icons -->
