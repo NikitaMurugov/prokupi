@@ -10,13 +10,12 @@
     <title>Администрирование - @yield('title')</title>
 
     <!-- Scripts -->
-    <script src="{{ mix('js/popper.min.js') }}" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="{{ mix('js/bootstrap-formhelpers.min.js') }}" defer></script>
     <script>
-        window.onload = function () {
+        document.addEventListener('DOMContentLoaded', () => {
 
             if (window.innerWidth <= 1200)  {
                 document.querySelector('.menu-right-sm').style.display = "block";
@@ -71,7 +70,7 @@
                 }
 
             });
-        }
+        });
 
     </script>
     @stack('scripts')
