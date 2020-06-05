@@ -94,7 +94,7 @@
         </div>
     </div>
 
-    <h1 class="my-5 h4 text-center">Товары из той же категории <span class=" text-muted">({{$product->category->name}})</span>: <span style="font-size: .7rem;" class="align-text-top badge-pill badge-danger text-uppercase">Свежие</span></h1>
+    <h1 class="my-5 h4 text-center">Объявления из той же категории <span class=" text-muted">({{$product->category->name}})</span>: <span style="font-size: .7rem;" class="align-text-top badge-pill badge-danger text-uppercase">Свежие</span></h1>
     <div class="container-xl container-lg  container-md container-sm">
         <div class="row">
             @foreach($product_cat->products as $product)

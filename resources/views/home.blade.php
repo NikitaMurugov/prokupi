@@ -93,7 +93,7 @@
 
     <h1 class="window-title">Популярные категории товаров:</h1>
 {{--    <div class="container-fluid container marketing">--}}
-    <div class="window ">
+    <div class="window__sections">
             @foreach($categories as $category)
                 <form method="get" action="{{ route('search') }}" style="text-decoration: none; color: #272727">
                     @csrf
