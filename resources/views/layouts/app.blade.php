@@ -32,7 +32,6 @@
             }
 
             if (window.innerWidth <= 740) {
-                document.querySelector('.menu-right-block').appendChild(searcher);
                 console.log(document.querySelector('.search-input').classList.contains('search-input-right'));
                 if (document.querySelector('.search-input').classList.contains('search-input-left')) {
                     document.querySelector('.search-input').classList.remove('search-input-left');
@@ -89,7 +88,6 @@
 
                 if (window.innerWidth <= 740) {
                     document.querySelector('.menu-right-block').appendChild(searcher);
-                    console.log(document.querySelector('.search-input').classList.contains('search-input-right'));
                     if (document.querySelector('.search-input').classList.contains('search-input-left')) {
                         document.querySelector('.search-input').classList.remove('search-input-left');
                         document.querySelector('.search-input').classList.add('search-input-right');

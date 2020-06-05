@@ -185,7 +185,6 @@
 
 @push("scripts")
     <script>
-
         function updateUser(ev) {
             let data = {};
             let inputs = {};
@@ -202,6 +201,9 @@
             if (data['s_name'] === '') {
                 errors.s_name = 'Поле "фамилия" является обязательным';
             }
+            if (data['t_name'] === '') {
+                data['t_name'] = '-';
+            }
             if (data['email'] === '') {
                 errors.email = 'Поле "почта" является обязательным';
             }
@@ -211,7 +213,7 @@
             if (data['phone_number'].split('').length !== 17) {
                 errors.phone_number = 'Поле "номер телефона" не полностью  заполнено';
             }
-            if (data['location'] === '') {
+            if (data['location'] === '' ) {
                 errors.location = 'Поле "адресс" является обязательным';
             }
 
@@ -232,7 +234,6 @@
                     type: 'post',
                     data: data,
                     success: function success(result) {
-
                         document.querySelector('.user-name-text').innerHTML = $('#name').val();
 
 
@@ -280,6 +281,7 @@
                             }, 200);
                         }, 2500);
                     }
+
                 });
             } else {
                 for(let input in inputs) {
@@ -301,7 +303,7 @@
             }
         }
 
-        window.onload = function  () {
+        document.addEventListener("DOMContentLoaded", () => {
             let deleteButton = document.querySelector('.button-deleteuser');
 
             deleteButton.addEventListener('click', function (ev) {
@@ -357,7 +359,7 @@
                 document.body.appendChild(modalInfo);
             });
 
-        };
+        });
     </script>
 @endpush
 

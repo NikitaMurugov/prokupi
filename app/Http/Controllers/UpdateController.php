@@ -21,9 +21,10 @@ class UpdateController extends Controller
     public function updateUser(Request $request)
     {
 //        \DB::enableQueryLog();
+//        dd($request);
         $user = Auth::user();
 //        dd(\DB::getQueryLog());
-        $user->fill($request->only([
+        $user->update($request->only([
             'name',
             's_name',
             't_name',
