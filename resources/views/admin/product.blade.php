@@ -36,7 +36,7 @@
 
                         <label for="image" class="small upload-image"  id=""> Загрузка нового изображения:</label>
 
-                        <div class="file-preview-image col-md-12 col-sm-12 card-img-left" >
+                        <div class="file-preview-image col-md-12 col-sm-12" >
 
                             <i class="fal fa-cloud-upload file-is-uploaded"></i>
                             <img id="preview-uploaded-image" src="{{'/' . $product->img}}"  style="max-height: 350px" alt="Картинка товара">
@@ -190,6 +190,7 @@
                     output.src = reader.result;
                 };
             });
+        }
 
     </script>
 @endpush

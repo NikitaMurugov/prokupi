@@ -103,7 +103,7 @@
                         <div class="card ">
                             <div class="card-img-top" style="background: url('{{ '/' . $product->img }}') center; width: 100%;height: 200px; background-size: cover; border-radius: 2px"></div>
                             <div class="card-body">
-                                <h5 class="card-title overflow-hidden">{{ $product->name }}</h5>
+                                <h5 class="card-title overflow-hidden" style="color: #272727">{{ $product->name }}</h5>
                                 <h5 class="card-subtitle text-primary">{{ $product->price }} руб.</h5>
                                 <p class="card-text card-text-fixed text-black-50">{{ $product->description }}</p>
                             </div>
