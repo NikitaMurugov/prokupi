@@ -108,7 +108,7 @@
                         </div>
                         <div class="card-body">
                             {{--                            <a href="#" class="btn btn-sm btn-outline-info">{{ $product->category->name }}</a>--}}
-                            <a href="{{route('$product' . $product->id)}}" class="text-muted small float-right">Подробнее..</a>
+                            <a href="{{route('product.get', $product->id)}}" class="text-muted small float-right">Подробнее..</a>
                         </div>
                         <div class="card-footer">
                             <small class="text-muted"> Дата: {{ \Carbon\Carbon::parse($product->created_at)->format('d.m.Y') }}</small>
