@@ -27,7 +27,7 @@ class ProductRequest extends FormRequest
             'name' => 'required',
             'price' => 'required|max:11',
             'description' => 'required',
-            'image' => 'required|image|mimes:jpeg,png',
+            'image' => 'required|image|mimes:jpeg,png|max:10000',
             'phone_number' => 'required|min:17|max:17',
             'location' => 'required'
         ];
@@ -42,6 +42,7 @@ class ProductRequest extends FormRequest
            'image.required' => 'Добавление фото является обязательным',
            'image.image' => 'В поле фото  должно быть изображение',
            'image.mimes' => 'Не поддерживаемый формат файла изображения',
+           'image.max' => 'Слишком большой размер изображения (больше 10мб)',
            'phone_number.required' => 'Поле номер телефона является обязательным',
            'phone_number.max' => 'Поле номер телефона должен содержать 12 символов (+7 (XXX) XXX-XXXX)',
            'phone_number.min' => 'Поле номер телефона должен содержать 12 символов (+7 (XXX) XXX-XXXX)',
