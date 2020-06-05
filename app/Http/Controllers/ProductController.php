@@ -149,7 +149,7 @@ class ProductController extends Controller
         }
         $img->save($model->img_path);
 
-        if (1) {
+        if (0) {
             for ($i = 1; $i <= 5;  $i++) {
                 $faker = Factory::create('ru_RU');
 
