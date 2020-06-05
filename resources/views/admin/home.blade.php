@@ -17,7 +17,7 @@
                         </div>
                         <div class="card-body">
                             {{--                            <a href="#" class="btn btn-sm btn-outline-info">{{ $product->category->name }}</a>--}}
-                            <a href="{{route('admin.product', $product->id)}}" class="btn btn-danger">Управление</a>
+                            <a href="{{route('admin.edit.product', $product->id)}}" class="btn btn-danger">Управление</a>
                         </div>
                         <div class="card-footer">
                             <small class="text-muted"> Дата: {{ \Carbon\Carbon::parse($product->created_at)->format('d.m.Y') }}</small>
@@ -26,7 +26,7 @@
                 </div>
             @endforeach
         </div>
-        <a href="{{route('admin.users')}}" class="text-muted text-center "><h1 class="h6">Все пользователи...</h1></a>
+        <a href="{{route('admin.products')}}" class="text-muted text-center "><h1 class="h6">Все продукты...</h1></a>
     </div>
     <h1 class="window-title">Последние добавленные пользователи:</h1>
     <div class="container-xl container-lg  container-md container-sm mb-5">
@@ -43,7 +43,7 @@
                         </div>
                         <div class="card-body">
                             {{--                            <a href="#" class="btn btn-sm btn-outline-info">{{ $product->category->name }}</a>--}}
-                            <a href="{{route('admin.user', $user->id)}}" class="btn btn-danger ">Управление</a>
+                            <a href="{{route('admin.edit.user', $user->id)}}" class="btn btn-danger ">Управление</a>
                         </div>
                         <div class="card-footer">
                             <small class="text-muted"> Дата: {{ \Carbon\Carbon::parse($user->created_at)->format('d.m.Y') }}</small>
@@ -54,7 +54,7 @@
             @endforeach
         </div>
 
-        <a href="{{route('admin.products')}}" class="text-muted text-center"><h1 class="h6">Все объявления...</h1></a>
+        <a href="{{route('admin.products')}}" class="text-muted text-center"><h1 class="h6">Все пользователи...</h1></a>
     </div>
 
 @endsection

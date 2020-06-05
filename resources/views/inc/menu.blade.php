@@ -34,7 +34,7 @@
 
             @auth
                 @if(Auth::user()->is_admin)
-                    <a class='text-dark' href="{{ route('admin') }}">Админ панель <i class="far fa-external-link-square" style="font-size: 12px"></i> </a>
+                    <a class='text-muted' href="{{ route('admin') }}" style="font-size: 12px;">Админ панель <i class="far fa-external-link-square" style="font-size: 10px"></i> </a>
                 @endif
             @endauth
 
