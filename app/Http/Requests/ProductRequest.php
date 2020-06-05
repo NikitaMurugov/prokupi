@@ -43,8 +43,8 @@ class ProductRequest extends FormRequest
            'image.image' => 'В поле фото  должно быть изображение',
            'image.mimes' => 'Не поддерживаемый формат файла изображения',
            'phone_number.required' => 'Поле номер телефона является обязательным',
-           'phone_number.max' => 'Поле номер телефона должен содержать 12 символов (+7 (9xx) xxx-xxxx)',
-           'phone_number.min' => 'Поле номер телефона должен содержать 12 символов (+7 (9xx) xxx-xxxx)',
+           'phone_number.max' => 'Поле номер телефона должен содержать 12 символов (+7 (XXX) XXX-XXXX)',
+           'phone_number.min' => 'Поле номер телефона должен содержать 12 символов (+7 (XXX) XXX-XXXX)',
            'location.required' => 'Поле местоположение является обязательным'
        ];
     }

@@ -6,7 +6,6 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-            @auth
                 <div class="card">
                     <div class="card-header">{{ __('Подать объявление') }}</div>
 
@@ -64,27 +63,33 @@
                                 <label for="image" class="col-md-4 col-form-label text-md-right ">{{ __('Загрузите изображение') }}</label>
 
                                 <div class="col-md-6">
-                                    <div class='uploaded-image'>
+                                    <div class='uploaded-image' >
+
                                         <i class="fal fa-cloud-upload"></i>
                                         <img src="" id='uploaded-image' alt="" >
-                                        <div class="reupload-image"></div>
+                                        <div class="reupload-image" @error('image') style="border:1px  solid #dc3545" @enderror>
+                                            @error('image')  <i class="far fa-exclamation-circle" style="display: flex;justify-content: center;align-items: center ;background: #fff;width: 14px;height: 14px; border-radius: 100% ;font-size: 16px; color:#dc3545; position: absolute; right: 10px; top:10px"></i> @enderror
+                                        </div>
                                     </div>
-                                    <div class="text upload-image" style="cursor: pointer"> Загрузка изображения </div>
+                                    @error('image')
+                                        <span class="invalid-feedback" style="display: block">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+
+                                    <div class="text upload-image " style="cursor: pointer;"> Загрузка изображения  </div>
+
+
 
                                     <input style="display: none"
                                            type="file"
-                                           class="form-control-file"
                                            id="image"
                                            name="image"
                                            accept="image/jpeg, image/png">
 
                                     <small class="form-text text-muted">Это изображение должно быть привлекательным и приятным для пользователей.</small>
 
-                                    @error('image')
-                                    <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+
                                 </div>
                             </div>
 
@@ -93,12 +98,13 @@
 
                                 <div class="col-md-6">
                                     <input id="location" type="text" placeholder="Например: Восточный" class="form-control @error('location') is-invalid @enderror" name="location" value="{{ old('location') }}" autofocus>
-                                    <small class="form-text text-muted">Местоположение по которому будут приходить покупатели за вашим товаром.</small>
                                     @error('location')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                    <small class="form-text text-muted">Местоположение по которому будут приходить покупатели за вашим товаром.</small>
+
                                 </div>
                             </div>
 
@@ -107,12 +113,13 @@
 
                                 <div class="col-md-6">
                                     <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror bfh-phone" data-format="+7 (ddd) ddd-dddd" name="phone_number" value="{{ old('phone_number') }}">
-                                    <small class="form-text text-muted">Будет видно всем пользователям.</small>
                                     @error('phone_number')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                    <small class="form-text text-muted">Будет видно всем пользователям.</small>
+
                                 </div>
                             </div>
 
@@ -142,7 +149,6 @@
                         </form>
                     </div>
                 </div>
-            @endauth
             </div>
         </div>
     </div>
