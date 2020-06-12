@@ -55,12 +55,14 @@
 @media screen and (max-width:479px) {
 
     .window__sections  {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        /*display: -webkit-flex;*/
+        display: block;
+        /*justify-content: center;*/
+        /*align-items: center;*/
+        width: 100vw;
     }
     .section {
-        width: 100%;
+        margin: 0 auto;
         height: 200px;
         flex-wrap: nowrap;
     }
