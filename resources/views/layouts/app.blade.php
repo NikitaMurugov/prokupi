@@ -10,7 +10,7 @@
     <title>Прокупи - @yield('title')</title>
 
     <script defer>
-        document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener("DOMContentLoaded", function() {
             let searcher = document.querySelector('.form-search');
             if (window.innerWidth <= 1200) {
                 document.querySelector('.menu-right-sm').style.display = "block";
