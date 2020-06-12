@@ -2,8 +2,6 @@
 
 
 use Illuminate\Support\Facades\Auth;
-use App\Models\Category;
-use App\Models\Product;
 
 Auth::routes();
 
@@ -27,11 +25,6 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/cabinet', 'CabinetController@index')->name('cabinet');
-
-//Route::model('Category', Category);
-//Route::model('Product', Product);
-
-
 
 Route::get('/products', 'ProductController@search')->name('search');
 Route::get('/product/add', 'ProductController@add')->name('product.add');

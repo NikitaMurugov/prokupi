@@ -6,7 +6,6 @@
 @endpush
 
 @section('menu')
-{{--    @dd(\Illuminate\Support\Facades\Auth::user())--}}
     <div class="menu">
         <div class="menu-left ">
             <a style="text-decoration: none" href="{{ route('home') }}">
@@ -16,7 +15,11 @@
             </a>
             <form action="{{ route('search') }}" class=" form-search">
                 @csrf
-                <input type="text" class="form-control mr-sm-2 search-input search-input-left" name="search" placeholder="Поиск..." value="{{old('search')}}">
+                <input type="text"
+                       class="form-control mr-sm-2 search-input search-input-left"
+                       name="search"
+                       placeholder="Поиск..."
+                       value="{{old('search')}}">
                 <i class="fa fa-search"></i>
                 <input class="search-input-button" type="submit" style="display: none">
             </form>
@@ -34,7 +37,8 @@
 
             @auth
                 @if(Auth::user()->is_admin)
-                    <a class='text-muted' href="{{ route('admin') }}" style="font-size: 12px;">Админ панель <i class="far fa-external-link-square" style="font-size: 10px"></i> </a>
+                    <a class='text-muted' href="{{ route('admin') }}"
+                       style="font-size: 12px;">Админ панель <i class="far fa-external-link-square" style="font-size: 10px"></i> </a>
                 @endif
             @endauth
 

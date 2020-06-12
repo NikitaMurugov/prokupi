@@ -74,17 +74,10 @@ class ProductController extends Controller
         if (isset($search)) {
             $products = Product::
 
-//        when($cat, function ($q) use ($cat) {
-//            $q->where('category_id', '=', $cat->id);
-//        })
             when($search, function ($q) use ($search) {
                 $q->where(function ($q) use ($search) {
                     $q->orWhere('name', 'like', $search . '%');
-//                    $q->orWhereHas('category', function ($q) use ($search) {
-//                        $q->where('name', 'like', '%' . $search . '%');
-//                    });
                 });
-
             })
                 ->orderByRaw('created_at DESC')->get();
             $prod_count = $products->count();
@@ -92,17 +85,10 @@ class ProductController extends Controller
         } elseif ($cat) {
             $products = Product::
 
-//          when($cat, function ($q) use ($cat) {
-//              $q->where('category_id', '=', $cat->id);
-//          })
             when($cat, function ($q) use ($cat) {
                 $q->where(function ($q) use ($cat) {
                     $q->orWhere('category_id', 'like', $cat . '%');
-//                    $q->orWhereHas('category', function ($q) use ($search) {
-//                        $q->where('name', 'like', '%' . $search . '%');
-//                    });
                 });
-
             })
                 ->orderByRaw('created_at DESC')->get();
             $prod_count      = $products->count();

@@ -45,48 +45,6 @@
 
                     <p class="my-5 text-center"><a href=""></a><i class="far fa-chevron-down" style="font-size: 20px; color: #e1e1e1"></i></p>
                 </div>
-                <div style="display: none" class="col-4">
-                    <form class="form-signin" method="POST" action="{{ route('login') }}" >
-                        @csrf
-                        <div class="text-center mb-4">
-                            <a style="text-decoration: none" href="{{ route('home') }}">
-                                <div class="logo"  style="width: 190px; margin: 0 auto 50px">
-                                    <span>прокупи</span><span class='logo-city'>.курган</span>
-                                </div>
-                            </a>
-                            <h1 class="h6 mb-3 font-weight-normal text-muted">*Для того  чтобы полноценно  пользоваться  сайтом  необходимо выполнить вход на сайт</h1>
-                            <br>
-                        </div>
-
-                        <div class="form-label-group">
-                            <input type="email" id="inputEmail" class="form-control @error('email')is-invalid @enderror" placeholder="Email" name="email" required autofocus>
-                            <label for="inputEmail">Email</label>
-                            @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-label-group">
-                            <input type="password" id="inputPassword" class="form-control @error('password')is-invalid @enderror" placeholder="Пароль" name="password" required>
-                            <label for="inputPassword">Пароль</label>
-                            @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        <div class="checkbox mb-3">
-                            <label>
-                                <input type="checkbox" value="remember-me"> Запомнить меня
-                            </label>
-                        </div>
-                        <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
-                    </form>
-
-                </div>
             </div>
         </div>
     </div>
@@ -94,20 +52,20 @@
     <h1 class="window-title">Популярные категории товаров:</h1>
 {{--    <div class="container-fluid container marketing">--}}
     <div class="window__sections">
-            @foreach($categories as $category)
-                <form method="get" action="{{ route('search') }}" style="text-decoration: none; color: #272727">
-                    @csrf
-                    <div class="section">
-                        <div class="section-image" style="background-image: url({{  '/storage'. $category->img_url }});"> </div>
-                        <div class="section-title">
-                            <span>{{$category->name}} </span>
-                            <small>({{ $category->products_count }})</small>
-                        </div>
-                        <input style="display: none" type="number" name="category_id" value="{{ $category->id }}">
-                        <input style="display: none" type="submit" class="category-button">
+        @foreach($categories as $category)
+            <form method="get" action="{{ route('search') }}" style="text-decoration: none; color: #272727">
+                @csrf
+                <div class="section">
+                    <div class="section-image" style="background-image: url({{  '/storage'. $category->img_url }});"> </div>
+                    <div class="section-title">
+                        <span>{{$category->name}} </span>
+                        <small>({{ $category->products_count }})</small>
                     </div>
-                </form>
-            @endforeach
+                    <input style="display: none" type="number" name="category_id" value="{{ $category->id }}">
+                    <input style="display: none" type="submit" class="category-button">
+                </div>
+            </form>
+        @endforeach
     </div>
     <h1 class="window-title">Последние поданные объявления:</h1>
     <div class="container-xl container-lg  container-md container-sm">
